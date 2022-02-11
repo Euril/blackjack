@@ -1,0 +1,50 @@
+body {  
+  display: grid; 
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr; 
+  grid-template-rows: 50px 1.5fr 1fr 1fr 1.5fr 50px; 
+  gap: 0px 0px; 
+  grid-template-areas: 
+    ". . . . . . . ."
+    ". . . . . . . ."
+    ". . . . . . . ."
+    ". . . . . . . ."
+    ". . . . . . . ."
+    ". . . . . . . ."; 
+}
+
+#dealerArea{
+  grid-area:2/4/3/6;
+}
+#discardArea{
+  grid-area:2/8/3/9;
+}
+#messageArea{
+  grid-area:3/3/5/7;
+}
+#playerArea{
+  grid-area:5/4/6/6;
+}
+#scoreboard{
+  grid-area:6/1/7/9;
+}
+
+
+
+
+
+
+.btn-group button {
+  background-color: #41aa04; /* Green background */
+  border: 1px solid rgb(0, 0, 0); /* Green border */
+  color: white; /* White text */
+  padding: 10px 10px; /* Some padding */
+  cursor: pointer; /* Pointer/hand icon */
+  width:6em;
+  display: block; /* Make the buttons appear below each other */
+}
+.btn-group button:not(:last-child) {
+  border-bottom: none; /* Prevent double borders */
+}
+.btn-group button:hover {
+  background-color: #3e8e41;
+}
