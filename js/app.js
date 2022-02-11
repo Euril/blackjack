@@ -18,7 +18,10 @@ let dCardToRemove
 
 let discardDeck
 
-let blackjackDeck = ["dA","dQ","dK","dJ","d10","d09","d08","d07","d06","d05","d04","d03","d02","hA","hQ","hK","hJ","h10","h09","h08","h07","h06","h05","h04","h03","h02","cA","cQ","cK","cJ","c10","c09","c08","c07","c06","c05","c04","c03","c02","sA","sQ","sK","sJ","s10","s09","s08","s07","s06","s05","s04","s03","s02"]
+//let blackjackDeck = ["dA","dQ","dK","dJ","d10","d09","d08","d07","d06","d05","d04","d03","d02","hA","hQ","hK","hJ","h10","h09","h08","h07","h06","h05","h04","h03","h02","cA","cQ","cK","cJ","c10","c09","c08","c07","c06","c05","c04","c03","c02","sA","sQ","sK","sJ","s10","s09","s08","s07","s06","s05","s04","s03","s02"]
+
+//test deck for A logic test
+let blackjackDeck = ["dA","dQ","dK","dJ","d10","d09","hA","hQ","hK","hJ","h10","cA","cQ","cK","cJ","c10","sA","sQ","sK","sJ","s10"]
 
 let playerTotal = 0
 let dealerTotal = 0
@@ -72,58 +75,33 @@ function drawHands(){
 
 function handleHit(){
   drawCard()
-  playerHand.push(cardPicked)
-  cardValue(playerHand)
+  cardValue(cardPicked)
+  playerHand.push(valueHolder)
   p1Render(cardPicked)
 }
 
 function dealerHit(){
   drawCard()
-  dealerHand.push(cardPicked)
-  cardValue(dealerHand)
+  cardValue(cardPicked)
+  dealerHand.push(valueHolder)
   dRender(cardPicked)
 }
 
 //function to add card value
-/*
 function cardValue(card){
-  let valueHolder
   valueHolder = card.slice(1)
-  
-  if(isNaN(parseInt(valueHolder)) === true){
-    if(valueHolder === 'Q' || valueHolder === 'K' || valueHolder === 'J'){
-      console.log(10)
+  console.log(valueHolder)
+  if(isNaN(parseInt(valueHolder)) === false){
+    //if(totalHolder > 21 )
+    valueHolder = (parseInt(valueHolder))
     }
-    if(valueHolder ==='A'){
-      console.log('more Logic needed ere')
-    }
+  console.log(typeof valueHolder)
   }
-  else{
-    console.log(parseInt(valueHolder))
-  }
-  // console.log(parseInt(valueHolder))
-  
-  }*/
 
-  function cardValue(handArray){
-    valueHolder = 0
-    totalHolder = 0 //had to take 2 variables for this for now because valueHolder ends up holding strings... not sure what to do
-    handArray.forEach(function(card){
-      valueHolder = card.slice(1)
-      if(isNaN(parseInt(valueHolder)) === true){
-        if(valueHolder === 'Q' || valueHolder === 'K' || valueHolder === 'J'){
-          totalHolder += 10
-        }
-        if(valueHolder ==='A'){
-          totalHolder += 11
-          console.log('more Logic needed ere')
-        }
-      }
-      else{
-        totalHolder += (parseInt(valueHolder))
-      }
-    })
-  }
+//function to add up hand to display total
+function handTotal(handArray){
+  
+}
 
 
 function p1Render(cardPicked){
@@ -137,11 +115,11 @@ function p1Render(cardPicked){
     }
   p1CardToRemove=cardPicked
   playerHandElem.classList.add(cardPicked)
-  playerTotal = totalHolder
-  player1TotalElem.textContent = `( ${playerTotal} )`
+  //playerTotal = totalHolder
+  //player1TotalElem.textContent = `( ${playerTotal} )` //player total render
 
   console.log(`Player: ${playerHand}`)
-  console.log(playerTotal)
+  //console.log(playerTotal)
 }
 
 function dRender(cardPicked){
@@ -155,9 +133,41 @@ function dRender(cardPicked){
     }
   dCardToRemove=cardPicked
   dealerHandElem.classList.add(cardPicked)
-  dealerTotal = totalHolder
-  dealerTotalElem.textContent = `( ${dealerTotal} )`
+  //dealerTotal = totalHolder
+  //dealerTotalElem.textContent = `( ${dealerTotal} )` //dealer total render
   
   console.log(`Dealer: ${dealerHand}`)
   console.log(dealerTotal)
 }
+
+
+
+//trashbin 
+
+
+
+  /*
+  //function to check handArrays like dealer or player to calculate card values
+function cardValue(handArray){
+  valueHolder = 0
+  totalHolder = 0 //had to take 2 variables for this for now because valueHolder ends up holding strings... not sure what to do
+  handArray.forEach(function(card){
+    valueHolder = card.slice(1)
+    console.log(handArray)
+    if(isNaN(parseInt(valueHolder)) === true){
+      //if(totalHolder > 21 )
+      if(valueHolder === 'Q' || valueHolder === 'K' || valueHolder === 'J'){
+        totalHolder += 10
+      }
+      if(valueHolder ==='A' && totalHolder > 21){
+        totalHolder += 1
+      }
+      if(valueHolder ==='A' && totalHolder < 21){
+        totalHolder +=11
+      }
+    }
+    else{
+      totalHolder += (parseInt(valueHolder))
+    }
+  })
+}*/
