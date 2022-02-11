@@ -26,7 +26,7 @@ let blackjackDeck = ["dA","dQ","dK","dJ","d10","d09","hA","hQ","hK","hJ","h10","
 let playerTotal = 0
 let dealerTotal = 0
 let valueHolder
-let totalHolder = 0
+let totalHolder
 
 /*------------------------ Cached Element References ------------------------*/
 let playerMenu = document.getElementById('btn-group')
@@ -77,6 +77,8 @@ function handleHit(){
   drawCard()
   cardValue(cardPicked)
   playerHand.push(valueHolder)
+  
+  handTotal(playerHand)
   p1Render(cardPicked)
 }
 
@@ -84,6 +86,8 @@ function dealerHit(){
   drawCard()
   cardValue(cardPicked)
   dealerHand.push(valueHolder)
+  
+  handTotal(dealerHand)
   dRender(cardPicked)
 }
 
@@ -92,14 +96,30 @@ function cardValue(card){
   valueHolder = card.slice(1)
   console.log(valueHolder)
   if(isNaN(parseInt(valueHolder)) === false){
-    //if(totalHolder > 21 )
     valueHolder = (parseInt(valueHolder))
     }
-  console.log(typeof valueHolder)
+  if(valueHolder === 'Q' || valueHolder === 'K' || valueHolder === 'J'){
+    valueHolder = 10
   }
+  
+}
 
-//function to add up hand to display total
+//function to add up hand to display total, and deal with A 11 or 1 situtation
 function handTotal(handArray){
+  totalHolder = 0
+  for (let i = 0; i < handArray.length; i++){
+    if(totalHolder > 21 && handArray.includes('A') === true){
+      totalHolder = totalHolder - 10
+    }
+  }
+  handArray.forEach(function(card){
+    if(card === 'A'){
+      totalHolder += 11
+    }else{
+      totalHolder += card
+    }
+    console.log(totalHolder)
+  })
   
 }
 
@@ -115,8 +135,8 @@ function p1Render(cardPicked){
     }
   p1CardToRemove=cardPicked
   playerHandElem.classList.add(cardPicked)
-  //playerTotal = totalHolder
-  //player1TotalElem.textContent = `( ${playerTotal} )` //player total render
+  playerTotal = totalHolder
+  player1TotalElem.textContent = `( ${playerTotal} )` //player total render
 
   console.log(`Player: ${playerHand}`)
   //console.log(playerTotal)
@@ -133,8 +153,8 @@ function dRender(cardPicked){
     }
   dCardToRemove=cardPicked
   dealerHandElem.classList.add(cardPicked)
-  //dealerTotal = totalHolder
-  //dealerTotalElem.textContent = `( ${dealerTotal} )` //dealer total render
+  dealerTotal = totalHolder
+  dealerTotalElem.textContent = `( ${dealerTotal} )` //dealer total render
   
   console.log(`Dealer: ${dealerHand}`)
   console.log(dealerTotal)
