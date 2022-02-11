@@ -14,18 +14,23 @@ body {
 
 #dealerArea{
   grid-area:2/4/3/6;
+  border-style:dotted;
 }
 #discardArea{
   grid-area:2/8/3/9;
+  border-style:dotted;
 }
 #messageArea{
   grid-area:3/3/5/7;
+  border-style:dotted;
 }
 #playerArea{
   grid-area:5/4/6/6;
+  border-style:dotted;
 }
 #scoreboard{
   grid-area:6/1/7/9;
+  border-style:solid;
 }
 
 
