@@ -18,11 +18,13 @@ let dCardToRemove
 
 let discardDeck
 
-let blackjackDeck = ["dA","dQ","dK","dJ","d10","d09","d08","d07","d06","d05","d04","d03","d02","hA","hQ","hK","hJ","h10","h09","h08","h07","h06","h05","h04","h03","h02","cA","cQ","cK","cJ","c10","c09","c08","c07","c06","c05","c04","c03","c02","sA","sQ","sK","sJ","s10","s09","s08","s07","s06","s05","s04","s03","s02"]
+//let blackjackDeck = ["dA","dQ","dK","dJ","d10","d09","d08","d07","d06","d05","d04","d03","d02","hA","hQ","hK","hJ","h10","h09","h08","h07","h06","h05","h04","h03","h02","cA","cQ","cK","cJ","c10","c09","c08","c07","c06","c05","c04","c03","c02","sA","sQ","sK","sJ","s10","s09","s08","s07","s06","s05","s04","s03","s02"]
 
-//test deck for Ace logic test
+//test deck for Ace testing
 // let blackjackDeck = ["dA","dQ","dK","dJ","d10","d09","hA","hQ","hK","hJ","h10","cA","cQ","cK","cJ","c10","sA","sQ","sK","sJ","s10"]
 //let blackjackDeck = ['dA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA']
+//test deck for low number testing
+let blackjackDeck = ["d04","d03","d02", "d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02"]
 
 let playerTotal = 0
 let dealerTotal = 0
@@ -48,6 +50,8 @@ document.querySelector('.btn-group').addEventListener('click', evt =>{
   }
   if(evt.target.id === 'stand'){
     console.log('did the stand')
+    document.querySelector(".playerMove").style.visibility="hidden"
+    setTimeout(dealerPhase, 2000)
   }
 })
 playGame.addEventListener('click', evt => {
@@ -91,7 +95,32 @@ function playerPhase(){
   phase= "PLAYER1"
   playGame.textContent = "Player Phase"
   document.querySelector(".playerMove").style.visibility="visible"
-  if()
+  if(playerTotal === "Bust"){
+    playGame.textContent = "Busted"
+    document.querySelector(".playerMove").style.visibility="hidden"
+    setTimeout(comparePhase, 2000)
+  }
+}
+
+function dealerPhase(){
+  phase = "DEALER"
+  playGame.textContent = "Dealer Phase"
+  if(dealerTotal < 17){
+    setTimeout(dealerHit,1500) //recursion of the function to keep drawing until 17+ 
+    setTimeout(dealerPhase,2000)
+  }
+  if(dealerTotal === 'Bust'){
+    setTimeout(comparePhase,1000)  
+  }
+  if(dealerTotal > 16 && dealerTotal <= 21){
+    setTimeout(comparePhase,2000)
+  }
+}
+
+function comparePhase(){
+  phase = "COMPARE"
+  playGame.textContent = "comparing text holder"
+  setTimeout(init,5000)
 }
 
 function handleHit(){
