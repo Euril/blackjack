@@ -36,7 +36,9 @@ body {
 
 
 
-
+.playerMove{
+  visibility: hidden;
+}
 
 .btn-group button {
   background-color: #41aa04; /* Green background */

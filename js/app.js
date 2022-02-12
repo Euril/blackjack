@@ -18,10 +18,11 @@ let dCardToRemove
 
 let discardDeck
 
-//let blackjackDeck = ["dA","dQ","dK","dJ","d10","d09","d08","d07","d06","d05","d04","d03","d02","hA","hQ","hK","hJ","h10","h09","h08","h07","h06","h05","h04","h03","h02","cA","cQ","cK","cJ","c10","c09","c08","c07","c06","c05","c04","c03","c02","sA","sQ","sK","sJ","s10","s09","s08","s07","s06","s05","s04","s03","s02"]
+let blackjackDeck = ["dA","dQ","dK","dJ","d10","d09","d08","d07","d06","d05","d04","d03","d02","hA","hQ","hK","hJ","h10","h09","h08","h07","h06","h05","h04","h03","h02","cA","cQ","cK","cJ","c10","c09","c08","c07","c06","c05","c04","c03","c02","sA","sQ","sK","sJ","s10","s09","s08","s07","s06","s05","s04","s03","s02"]
 
-//test deck for A logic test
-let blackjackDeck = ["dA","dQ","dK","dJ","d10","d09","hA","hQ","hK","hJ","h10","cA","cQ","cK","cJ","c10","sA","sQ","sK","sJ","s10"]
+//test deck for Ace logic test
+// let blackjackDeck = ["dA","dQ","dK","dJ","d10","d09","hA","hQ","hK","hJ","h10","cA","cQ","cK","cJ","c10","sA","sQ","sK","sJ","s10"]
+//let blackjackDeck = ['dA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA']
 
 let playerTotal = 0
 let dealerTotal = 0
@@ -30,7 +31,8 @@ let totalHolder
 
 /*------------------------ Cached Element References ------------------------*/
 let playerMenu = document.getElementById('btn-group')
-let playGame = document.getElementById('messageArea')
+//let playGame = document.getElementById('messageArea')
+let playGame = document.getElementById('phaseGame')
 
 let playerHandElem = document.getElementById('playerHand')
 let dealerHandElem = document.getElementById('dealerHand')
@@ -49,7 +51,7 @@ document.querySelector('.btn-group').addEventListener('click', evt =>{
   }
 })
 playGame.addEventListener('click', evt => {
-  if(evt.target.id ==="phaseGame"){
+  if(evt.target.id ==="phaseGame" && phase === "INIT"){
     console.log('start a phase')
     drawHands()
   }
@@ -58,6 +60,14 @@ playGame.addEventListener('click', evt => {
 
 
 /*-------------------------------- Functions --------------------------------*/
+init()
+
+function init(){
+  phase = "INIT"
+  playerTotal = 0
+  dealerTotal = 0
+  playGame.textContent = "Click Here to Start"
+}
 
 //function to take card from blackjackDeck
 function drawCard(){
@@ -67,10 +77,21 @@ function drawCard(){
 
 //function for first turn draw phase
 function drawHands(){
+  phase = "DRAW"
   handleHit()
   setTimeout(dealerHit, 1000)
   setTimeout(handleHit, 2500)
   setTimeout(dealerHit, 4000)
+  playGame.textContent = "Drawing Cards"
+  setTimeout(playerPhase, 5000)
+
+}
+
+function playerPhase(){
+  phase= "PLAYER1"
+  playGame.textContent = "Player Phase"
+  document.querySelector(".playerMove").style.visibility="visible"
+  if()
 }
 
 function handleHit(){
@@ -104,23 +125,31 @@ function cardValue(card){
   
 }
 
-//function to add up hand to display total, and deal with A 11 or 1 situtation
+//function to add up hand to display total, and deal with A 11 or 1 situtation, and check during player and dealer phase if they got over 21
 function handTotal(handArray){
   totalHolder = 0
-  for (let i = 0; i < handArray.length; i++){
-    if(totalHolder > 21 && handArray.includes('A') === true){
-      totalHolder = totalHolder - 10
-    }
-  }
+  // for (let i = 0; i < handArray.length; i++){
+    
+  // }
   handArray.forEach(function(card){
-    if(card === 'A'){
+    // if(totalHolder >= 20 && handArray.includes('A') === true){
+    //   totalHolder = totalHolder - 10
+    // }
+    if(card === 'A' && totalHolder < 11){
       totalHolder += 11
-    }else{
-      totalHolder += card
+      if(totalHolder >21){
+        totalHolder = totalHolder - 10
+      }
+    }else if(card === 'A' && totalHolder >= 11){
+      totalHolder += 1
+    }else {
+    totalHolder += card
     }
     console.log(totalHolder)
   })
-  
+  if(totalHolder > 21){
+    totalHolder = 'Bust'
+  }
 }
 
 
