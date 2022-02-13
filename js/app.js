@@ -18,16 +18,11 @@ let dCardToRemove
 
 let discardDeck = []
 
-let blackjackDeck = ["dA","dQ","dK","dJ","d10","d09","d08","d07","d06","d05","d04","d03","d02","hA","hQ","hK","hJ","h10","h09","h08","h07","h06","h05","h04","h03","h02","cA","cQ","cK","cJ","c10","c09","c08","c07","c06","c05","c04","c03","c02","sA","sQ","sK","sJ","s10","s09","s08","s07","s06","s05","s04","s03","s02",
-"dA","dQ","dK","dJ","d10","d09","d08","d07","d06","d05","d04","d03","d02","hA","hQ","hK","hJ","h10","h09","h08","h07","h06","h05","h04","h03","h02","cA","cQ","cK","cJ","c10","c09","c08","c07","c06","c05","c04","c03","c02","sA","sQ","sK","sJ","s10","s09","s08","s07","s06","s05","s04","s03","s02",
-"dA","dQ","dK","dJ","d10","d09","d08","d07","d06","d05","d04","d03","d02","hA","hQ","hK","hJ","h10","h09","h08","h07","h06","h05","h04","h03","h02","cA","cQ","cK","cJ","c10","c09","c08","c07","c06","c05","c04","c03","c02","sA","sQ","sK","sJ","s10","s09","s08","s07","s06","s05","s04","s03","s02",
-"dA","dQ","dK","dJ","d10","d09","d08","d07","d06","d05","d04","d03","d02","hA","hQ","hK","hJ","h10","h09","h08","h07","h06","h05","h04","h03","h02","cA","cQ","cK","cJ","c10","c09","c08","c07","c06","c05","c04","c03","c02","sA","sQ","sK","sJ","s10","s09","s08","s07","s06","s05","s04","s03","s02",
-"dA","dQ","dK","dJ","d10","d09","d08","d07","d06","d05","d04","d03","d02","hA","hQ","hK","hJ","h10","h09","h08","h07","h06","h05","h04","h03","h02","cA","cQ","cK","cJ","c10","c09","c08","c07","c06","c05","c04","c03","c02","sA","sQ","sK","sJ","s10","s09","s08","s07","s06","s05","s04","s03","s02",
-"dA","dQ","dK","dJ","d10","d09","d08","d07","d06","d05","d04","d03","d02","hA","hQ","hK","hJ","h10","h09","h08","h07","h06","h05","h04","h03","h02","cA","cQ","cK","cJ","c10","c09","c08","c07","c06","c05","c04","c03","c02","sA","sQ","sK","sJ","s10","s09","s08","s07","s06","s05","s04","s03","s02"]
+//let blackjackDeck = ["dA","dQ","dK","dJ","d10","d09","d08","d07","d06","d05","d04","d03","d02","hA","hQ","hK","hJ","h10","h09","h08","h07","h06","h05","h04","h03","h02","cA","cQ","cK","cJ","c10","c09","c08","c07","c06","c05","c04","c03","c02","sA","sQ","sK","sJ","s10","s09","s08","s07","s06","s05","s04","s03","s02","dA","dQ","dK","dJ","d10","d09","d08","d07","d06","d05","d04","d03","d02","hA","hQ","hK","hJ","h10","h09","h08","h07","h06","h05","h04","h03","h02","cA","cQ","cK","cJ","c10","c09","c08","c07","c06","c05","c04","c03","c02","sA","sQ","sK","sJ","s10","s09","s08","s07","s06","s05","s04","s03","s02","dA","dQ","dK","dJ","d10","d09","d08","d07","d06","d05","d04","d03","d02","hA","hQ","hK","hJ","h10","h09","h08","h07","h06","h05","h04","h03","h02","cA","cQ","cK","cJ","c10","c09","c08","c07","c06","c05","c04","c03","c02","sA","sQ","sK","sJ","s10","s09","s08","s07","s06","s05","s04","s03","s02","dA","dQ","dK","dJ","d10","d09","d08","d07","d06","d05","d04","d03","d02","hA","hQ","hK","hJ","h10","h09","h08","h07","h06","h05","h04","h03","h02","cA","cQ","cK","cJ","c10","c09","c08","c07","c06","c05","c04","c03","c02","sA","sQ","sK","sJ","s10","s09","s08","s07","s06","s05","s04","s03","s02","dA","dQ","dK","dJ","d10","d09","d08","d07","d06","d05","d04","d03","d02","hA","hQ","hK","hJ","h10","h09","h08","h07","h06","h05","h04","h03","h02","cA","cQ","cK","cJ","c10","c09","c08","c07","c06","c05","c04","c03","c02","sA","sQ","sK","sJ","s10","s09","s08","s07","s06","s05","s04","s03","s02","dA","dQ","dK","dJ","d10","d09","d08","d07","d06","d05","d04","d03","d02","hA","hQ","hK","hJ","h10","h09","h08","h07","h06","h05","h04","h03","h02","cA","cQ","cK","cJ","c10","c09","c08","c07","c06","c05","c04","c03","c02","sA","sQ","sK","sJ","s10","s09","s08","s07","s06","s05","s04","s03","s02"]
 
 //test deck for Ace testing
 // let blackjackDeck = ["dA","dQ","dK","dJ","d10","d09","hA","hQ","hK","hJ","h10","cA","cQ","cK","cJ","c10","sA","sQ","sK","sJ","s10"]
-//let blackjackDeck = ['dA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA']
+let blackjackDeck = ['dA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','dA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','dA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','dA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','dA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','dA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','dA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','dA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA']
 //test deck for low number testing
 //let blackjackDeck = ["d04","d03","d02", "d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02"]
 
@@ -98,7 +93,8 @@ function drawHands(){
   handleHit()
   setTimeout(dealerHit, 1000)
   setTimeout(handleHit, 2500)
-  setTimeout(dealerHit, 4000)
+  setTimeout(dealerDrawPhase,4000)
+  //setTimeout(dealerHit, 4000)
   
   setTimeout(playerPhase, 5000)
 
@@ -119,6 +115,9 @@ function playerPhase(){
 function dealerPhase(){
   phase = "DEALER"
   playGame.textContent = "Dealer Phase"
+  dRender()
+  cardValue(dealerHand)
+  dTotalRender()
   if(dealerTotal < 17){
     setTimeout(dealerHit,1500) //recursion of the function to keep drawing until 17+ 
     setTimeout(dealerPhase,2000)
@@ -150,15 +149,24 @@ function comparePhase(){
 function clearPhase(){
   phase = "CLEAR"
   playerHand=[]
+  p1Render()
   dealerHand=[]
+  dRender()
   playerTotal = "-"
   player1TotalElem.textContent = `( ${playerTotal} )`
   dealerTotal = "-"
   dealerTotalElem.textContent = `( ${dealerTotal} )`
-  playerHandElem.setAttribute('class', "card large outline")
-  dealerHandElem.setAttribute('class', "card large outline")
+
+  //playerHandElem.setAttribute('class', "card large outline")
+  //dealerHandElem.setAttribute('class', "card large outline")
   init()
 }
+
+// function clearHand(handArray){
+//   handArray.forEach((card, idx) =>{
+//     handArray.pop
+//   })
+// }
 
 function handleHit(){
   drawCard()
@@ -174,7 +182,14 @@ function handleHit(){
     setTimeout(clearPhase, 2000)
   }
 }
-
+function dealerDrawPhase(){
+  drawCard()
+  dealerHand.push(cardPicked)
+  let newCard = document.createElement("div")
+  newCard.setAttribute("class", `card large back-blue`)
+  dealerHandElem.appendChild(newCard)
+  console.log("Draw Hand " + dealerHand)
+}
 function dealerHit(){
   drawCard()
   dealerHand.push(cardPicked)
@@ -182,6 +197,7 @@ function dealerHit(){
   cardValue(dealerHand)
   //handTotal(dealerHand)
   dTotalRender()
+  console.log(dealerHand)
 }
 
 //function to add card value
@@ -189,35 +205,44 @@ function cardValue(handArray){
   totalHolder = 0
   tempArray = [] // empty tempArray
   tempArray = [...handArray] //fill tempArray
+  
   tempArray.forEach(function(card){
     valueHolder = card.slice(1)
-  //console.log(valueHolder)
-  if(isNaN(parseInt(valueHolder)) === false){
-    //valueHolder = (parseInt(valueHolder))
-    totalHolder = totalHolder + parseInt(valueHolder)
+    
+    if(isNaN(parseInt(valueHolder)) === false){
+      totalHolder = totalHolder + parseInt(valueHolder)
+      }
+    if(valueHolder === 'Q' || valueHolder === 'K' || valueHolder === 'J'){
+      totalHolder += 10
     }
-  if(valueHolder === 'Q' || valueHolder === 'K' || valueHolder === 'J'){
-    totalHolder += 10
-  }
-  if(card === 'A' && totalHolder < 11){
-    totalHolder += 11
-    if(totalHolder >21){
-      totalHolder = totalHolder - 10
+    if(valueHolder === 'A'){
+      aceCardValue()
     }
-  }else if(card === 'A' && totalHolder >= 11){
-    totalHolder += 1
-  }
-  if(card[0] === 'A' && totalHolder > 21){
-    totalHolder = totalHolder - 10
-  }
-    //console.log(totalHolder)
-  })
+    // if(card[0] === 'A' && totalHolder > 21){
+    //   totalHolder = totalHolder - 10
+    // }
+      //console.log(totalHolder)
+    })
   
   if(totalHolder > 21){
     totalHolder = 'Bust'
   }
   
   //ocationTotal.textContent = `( ${totalHolder} )`
+}
+
+//function to deal with Ace 11 or 1 situtation
+function aceCardValue(){
+
+    if(valueHolder === 'A' && totalHolder < 11){
+      totalHolder += 11
+      if(totalHolder >21){
+        totalHolder = totalHolder - 10
+      }
+    }else if(valueHolder === 'A' && totalHolder >= 11){
+      totalHolder += 1
+    }
+    
 }
 function p1TotalRender(){
   playerTotal = totalHolder
@@ -228,27 +253,7 @@ function dTotalRender(){
   dealerTotalElem.textContent = `( ${dealerTotal} )`
 }
 
-//function to add up hand to display total, and deal with A 11 or 1 situtation, and check during player and dealer phase if they got over 21
-function handTotal(handArray){
-  totalHolder = 0
-  handArray.forEach(function(card){
-    
-    if(card === 'A' && totalHolder < 11){
-      totalHolder += 11
-      if(totalHolder >21){
-        totalHolder = totalHolder - 10
-      }
-    }else if(card === 'A' && totalHolder >= 11){
-      totalHolder += 1
-    }else {
-    totalHolder += card
-    }
-    //console.log(totalHolder)
-  })
-  if(totalHolder > 21){
-    totalHolder = 'Bust'
-  }
-}
+
 
 function p1Render(){
   playerHandElem.innerHTML= ""
