@@ -27,17 +27,33 @@ body {
 #playerArea{
   grid-area:5/4/6/6;
   border-style:dotted;
+  
 }
 #scoreboard{
   grid-area:6/1/7/9;
   border-style:solid;
 }
-
+#playerHand{
+  width:50%;
+  margin-left:auto;
+  margin-right:auto;
+  justify-content: center;
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(10px, max-content));
+}
+#dealerHand{
+  width:50%;
+  margin-left:auto;
+  margin-right:auto;
+  justify-content: center;
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(10px, max-content));
+}
 
 
 
 .playerMove{
-  visibility: hidden;
+  visibility: visible;
 }
 
 .btn-group button {

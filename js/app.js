@@ -35,6 +35,7 @@ let playerTotal = 0
 let dealerTotal = 0
 let valueHolder
 let totalHolder
+let tempArray = []
 
 /*------------------------ Cached Element References ------------------------*/
 let playerMenu = document.getElementById('btn-group')
@@ -161,11 +162,11 @@ function clearPhase(){
 
 function handleHit(){
   drawCard()
-  cardValue(cardPicked)
-  playerHand.push(valueHolder)
-  
-  handTotal(playerHand)
-  p1Render(cardPicked)
+  playerHand.push(cardPicked)
+  p1Render()
+  cardValue(playerHand)
+  //handTotal(playerHand)
+  p1TotalRender()
   if(playerTotal === "Bust"){
     playGame.textContent = "You Busted"
     document.querySelector(".playerMove").style.visibility="hidden"
@@ -176,33 +177,62 @@ function handleHit(){
 
 function dealerHit(){
   drawCard()
-  cardValue(cardPicked)
-  dealerHand.push(valueHolder)
-  
-  handTotal(dealerHand)
-  dRender(cardPicked)
+  dealerHand.push(cardPicked)
+  dRender()
+  cardValue(dealerHand)
+  //handTotal(dealerHand)
+  dTotalRender()
 }
 
 //function to add card value
-function cardValue(card){
-  valueHolder = card.slice(1)
+function cardValue(handArray){
+  totalHolder = 0
+  tempArray = [] // empty tempArray
+  tempArray = [...handArray] //fill tempArray
+  tempArray.forEach(function(card){
+    valueHolder = card.slice(1)
   //console.log(valueHolder)
   if(isNaN(parseInt(valueHolder)) === false){
-    valueHolder = (parseInt(valueHolder))
+    //valueHolder = (parseInt(valueHolder))
+    totalHolder = totalHolder + parseInt(valueHolder)
     }
   if(valueHolder === 'Q' || valueHolder === 'K' || valueHolder === 'J'){
-    valueHolder = 10
+    totalHolder += 10
+  }
+  if(card === 'A' && totalHolder < 11){
+    totalHolder += 11
+    if(totalHolder >21){
+      totalHolder = totalHolder - 10
+    }
+  }else if(card === 'A' && totalHolder >= 11){
+    totalHolder += 1
+  }
+  if(card[0] === 'A' && totalHolder > 21){
+    totalHolder = totalHolder - 10
+  }
+    //console.log(totalHolder)
+  })
+  
+  if(totalHolder > 21){
+    totalHolder = 'Bust'
   }
   
+  //ocationTotal.textContent = `( ${totalHolder} )`
+}
+function p1TotalRender(){
+  playerTotal = totalHolder
+  player1TotalElem.textContent = `( ${playerTotal} )` //player total render
+}
+function dTotalRender(){
+  dealerTotal = totalHolder
+  dealerTotalElem.textContent = `( ${dealerTotal} )`
 }
 
 //function to add up hand to display total, and deal with A 11 or 1 situtation, and check during player and dealer phase if they got over 21
 function handTotal(handArray){
   totalHolder = 0
   handArray.forEach(function(card){
-    // if(totalHolder >= 20 && handArray.includes('A') === true){
-    //   totalHolder = totalHolder - 10
-    // }
+    
     if(card === 'A' && totalHolder < 11){
       totalHolder += 11
       if(totalHolder >21){
@@ -220,25 +250,29 @@ function handTotal(handArray){
   }
 }
 
-
-function p1Render(cardPicked){
-  // Remove outline class when first card is picked
-  if (playerHand.length === 1) {  
-    playerHandElem.classList.remove("outline")
-  }
-   // Removes previous picked card
-    if(playerHand.length > 1){
-      playerHandElem.classList.remove(p1CardToRemove)
-    }
-  p1CardToRemove=cardPicked
-  playerHandElem.classList.add(cardPicked)
-  playerTotal = totalHolder
-  player1TotalElem.textContent = `( ${playerTotal} )` //player total render
-
-  //console.log(`Player: ${playerHand}`)
-  //console.log(playerTotal)
+function p1Render(){
+  playerHandElem.innerHTML= ""
+  playerHand.forEach((card, idx)=>{
+  renderCard(card, idx, playerHandElem)
+  
+})
+}
+function dRender(){
+  dealerHandElem.innerHTML= ""
+  dealerHand.forEach((card, idx)=>{
+    renderCard(card, idx, dealerHandElem)
+  })
 }
 
+function renderCard(cardPicked, idx, location){
+  let newCard = document.createElement("div")
+  //newCard.classList.add("card", "large", `${cardPicked}`)
+  newCard.setAttribute("class", `card large ${cardPicked}`)
+  //newCard.innerHTML = ""
+  location.appendChild(newCard)
+}
+
+/*
 function dRender(cardPicked){
   // Remove outline class when first card is picked
   if (dealerHand.length === 1) {  
@@ -255,7 +289,7 @@ function dRender(cardPicked){
   
   //console.log(`Dealer: ${dealerHand}`)
   //console.log(dealerTotal)
-}
+}*/
 
 function shuffleDeck(){
   console.log("Shuffled deck")
@@ -296,3 +330,66 @@ function cardValue(handArray){
     }
   })
 }*/
+
+// function p1Render(cardPicked){
+//   // Remove outline class when first card is picked
+//   if (playerHand.length === 1) {  
+//     playerHandElem.classList.remove("outline")
+//   }
+//    // Removes previous picked card
+//     if(playerHand.length > 1){
+//       playerHandElem.classList.remove(p1CardToRemove)
+//     }
+//   p1CardToRemove=cardPicked
+//   playerHandElem.classList.add(cardPicked)
+//   playerTotal = totalHolder
+//   player1TotalElem.textContent = `( ${playerTotal} )` //player total render
+
+//   //console.log(`Player: ${playerHand}`)
+//   //console.log(playerTotal)
+// }
+
+/*
+//function to add card value
+function cardValue(card){
+  valueHolder = card.slice(1)
+  //console.log(valueHolder)
+  if(isNaN(parseInt(valueHolder)) === false){
+    valueHolder = (parseInt(valueHolder))
+    }
+  if(valueHolder === 'Q' || valueHolder === 'K' || valueHolder === 'J'){
+    valueHolder = 10
+  }
+  
+}
+
+//function to add up hand to display total, and deal with A 11 or 1 situtation, and check during player and dealer phase if they got over 21
+function handTotal(handArray){
+  totalHolder = 0
+  handArray.forEach(function(card){
+    
+    if(card === 'A' && totalHolder < 11){
+      totalHolder += 11
+      if(totalHolder >21){
+        totalHolder = totalHolder - 10
+      }
+    }else if(card === 'A' && totalHolder >= 11){
+      totalHolder += 1
+    }else {
+    totalHolder += card
+    }
+    //console.log(totalHolder)
+  })
+  if(totalHolder > 21){
+    totalHolder = 'Bust'
+  }
+} */
+
+// function dealerHit(){
+//   drawCard()
+//   cardValue(cardPicked)
+//   dealerHand.push(valueHolder)
+  
+//   handTotal(dealerHand)
+//   dRender(cardPicked)
+// }
