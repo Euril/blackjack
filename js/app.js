@@ -6,7 +6,7 @@
 let phase
 let winner
 let round
-let score
+let score = 0
 let playerHand = []
 
 let dealerHand = []
@@ -16,15 +16,15 @@ let p1CardToRemove
 let dCardToRemove
 //let cardPicked
 
-let discardDeck
+let discardDeck = []
 
-//let blackjackDeck = ["dA","dQ","dK","dJ","d10","d09","d08","d07","d06","d05","d04","d03","d02","hA","hQ","hK","hJ","h10","h09","h08","h07","h06","h05","h04","h03","h02","cA","cQ","cK","cJ","c10","c09","c08","c07","c06","c05","c04","c03","c02","sA","sQ","sK","sJ","s10","s09","s08","s07","s06","s05","s04","s03","s02"]
+let blackjackDeck = ["dA","dQ","dK","dJ","d10","d09","d08","d07","d06","d05","d04","d03","d02","hA","hQ","hK","hJ","h10","h09","h08","h07","h06","h05","h04","h03","h02","cA","cQ","cK","cJ","c10","c09","c08","c07","c06","c05","c04","c03","c02","sA","sQ","sK","sJ","s10","s09","s08","s07","s06","s05","s04","s03","s02"]
 
 //test deck for Ace testing
 // let blackjackDeck = ["dA","dQ","dK","dJ","d10","d09","hA","hQ","hK","hJ","h10","cA","cQ","cK","cJ","c10","sA","sQ","sK","sJ","s10"]
 //let blackjackDeck = ['dA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA']
 //test deck for low number testing
-let blackjackDeck = ["d04","d03","d02", "d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02"]
+//let blackjackDeck = ["d04","d03","d02", "d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02"]
 
 let playerTotal = 0
 let dealerTotal = 0
@@ -35,6 +35,7 @@ let totalHolder
 let playerMenu = document.getElementById('btn-group')
 //let playGame = document.getElementById('messageArea')
 let playGame = document.getElementById('phaseGame')
+let scoreArea = document.getElementById('scoreboard')
 
 let playerHandElem = document.getElementById('playerHand')
 let dealerHandElem = document.getElementById('dealerHand')
@@ -65,12 +66,14 @@ playGame.addEventListener('click', evt => {
 
 /*-------------------------------- Functions --------------------------------*/
 init()
+NEED A RESHUFFLE CHECK TO MAKE A NEW DECK WHEN BELOW BLACK JACK DECK LEGNTH IS BELOW 156
 
 function init(){
   phase = "INIT"
   playerTotal = 0
   dealerTotal = 0
   playGame.textContent = "Click Here to Start"
+  scoreArea.textContent = `Score: ${score}p`
 }
 
 //function to take card from blackjackDeck
@@ -82,11 +85,12 @@ function drawCard(){
 //function for first turn draw phase
 function drawHands(){
   phase = "DRAW"
+  playGame.textContent = "Drawing Cards"
   handleHit()
   setTimeout(dealerHit, 1000)
   setTimeout(handleHit, 2500)
   setTimeout(dealerHit, 4000)
-  playGame.textContent = "Drawing Cards"
+  
   setTimeout(playerPhase, 5000)
 
 }
@@ -95,11 +99,12 @@ function playerPhase(){
   phase= "PLAYER1"
   playGame.textContent = "Player Phase"
   document.querySelector(".playerMove").style.visibility="visible"
-  if(playerTotal === "Bust"){
-    playGame.textContent = "Busted"
-    document.querySelector(".playerMove").style.visibility="hidden"
-    setTimeout(comparePhase, 2000)
-  }
+  // if(playerTotal === "Bust"){
+  //   playGame.textContent = "You Busted"
+  //   document.querySelector(".playerMove").style.visibility="hidden"
+  //   score = score - 1000 
+  //   setTimeout(clearPhase, 2000)
+  // }
 }
 
 function dealerPhase(){
@@ -109,18 +114,41 @@ function dealerPhase(){
     setTimeout(dealerHit,1500) //recursion of the function to keep drawing until 17+ 
     setTimeout(dealerPhase,2000)
   }
-  if(dealerTotal === 'Bust'){
-    setTimeout(comparePhase,1000)  
-  }
   if(dealerTotal > 16 && dealerTotal <= 21){
     setTimeout(comparePhase,2000)
+  }
+  if(dealerTotal === 'Bust'){
+    score = score + 1000
+    setTimeout(clearPhase,1000)  
   }
 }
 
 function comparePhase(){
   phase = "COMPARE"
   playGame.textContent = "comparing text holder"
-  setTimeout(init,5000)
+  if(playerTotal === dealerTotal){
+    playGame.textContent = "Push"
+  }else if(playerTotal > dealerTotal){
+    playGame.textContent = "Win"
+    score = score + 1000
+  }else{
+    playGame.textContent = "Dealer Wins"
+    score = score - 1000
+  }
+  setTimeout(clearPhase, 2000)
+}
+
+function clearPhase(){
+  phase = "CLEAR"
+  playerHand=[]
+  dealerHand=[]
+  playerTotal = 0
+  player1TotalElem.textContent = `( ${dealerTotal} )`
+  dealerTotal = 0
+  dealerTotalElem.textContent = `( ${dealerTotal} )`
+  playerHandElem.setAttribute('class', "card large outline")
+  dealerHandElem.setAttribute('class', "card large outline")
+  init()
 }
 
 function handleHit(){
@@ -130,6 +158,12 @@ function handleHit(){
   
   handTotal(playerHand)
   p1Render(cardPicked)
+  if(playerTotal === "Bust"){
+    playGame.textContent = "You Busted"
+    document.querySelector(".playerMove").style.visibility="hidden"
+    score = score - 1000 
+    setTimeout(clearPhase, 2000)
+  }
 }
 
 function dealerHit(){
@@ -144,7 +178,7 @@ function dealerHit(){
 //function to add card value
 function cardValue(card){
   valueHolder = card.slice(1)
-  console.log(valueHolder)
+  //console.log(valueHolder)
   if(isNaN(parseInt(valueHolder)) === false){
     valueHolder = (parseInt(valueHolder))
     }
@@ -157,9 +191,6 @@ function cardValue(card){
 //function to add up hand to display total, and deal with A 11 or 1 situtation, and check during player and dealer phase if they got over 21
 function handTotal(handArray){
   totalHolder = 0
-  // for (let i = 0; i < handArray.length; i++){
-    
-  // }
   handArray.forEach(function(card){
     // if(totalHolder >= 20 && handArray.includes('A') === true){
     //   totalHolder = totalHolder - 10
@@ -174,7 +205,7 @@ function handTotal(handArray){
     }else {
     totalHolder += card
     }
-    console.log(totalHolder)
+    //console.log(totalHolder)
   })
   if(totalHolder > 21){
     totalHolder = 'Bust'
@@ -187,7 +218,7 @@ function p1Render(cardPicked){
   if (playerHand.length === 1) {  
     playerHandElem.classList.remove("outline")
   }
-   // Removes previous picked card from deck 2 class list
+   // Removes previous picked card
     if(playerHand.length > 1){
       playerHandElem.classList.remove(p1CardToRemove)
     }
@@ -196,7 +227,7 @@ function p1Render(cardPicked){
   playerTotal = totalHolder
   player1TotalElem.textContent = `( ${playerTotal} )` //player total render
 
-  console.log(`Player: ${playerHand}`)
+  //console.log(`Player: ${playerHand}`)
   //console.log(playerTotal)
 }
 
@@ -205,7 +236,7 @@ function dRender(cardPicked){
   if (dealerHand.length === 1) {  
     dealerHandElem.classList.remove("outline")
   }
-   // Removes previous picked card from deck 2 class list
+   // Removes previous picked card
     if(dealerHand.length > 1){
       dealerHandElem.classList.remove(dCardToRemove)
     }
@@ -214,8 +245,8 @@ function dRender(cardPicked){
   dealerTotal = totalHolder
   dealerTotalElem.textContent = `( ${dealerTotal} )` //dealer total render
   
-  console.log(`Dealer: ${dealerHand}`)
-  console.log(dealerTotal)
+  //console.log(`Dealer: ${dealerHand}`)
+  //console.log(dealerTotal)
 }
 
 
