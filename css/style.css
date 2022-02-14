@@ -1,38 +1,70 @@
 body {  
   display: grid; 
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr; 
-  grid-template-rows: 50px 1.5fr 1fr 1fr 1.5fr 50px; 
+  background-image: url(../images/greenbackground.png);
+  background-size:contain;
+  
+  display: grid; 
+  grid-template-columns: 6.66% 6.66% 6.66% 6.66% 6.66% 6.66% 6.66% 6.66% 6.66% 6.66% 6.66% 6.66% 6.66% 6.66% 6.66%; 
+  grid-template-rows: 20% 5% 30% 5% 20% 10% 10%; 
   gap: 0px 0px; 
   grid-template-areas: 
-    ". . . . . . . ."
-    ". . . . . . . ."
-    ". . . . . . . ."
-    ". . . . . . . ."
-    ". . . . . . . ."
-    ". . . . . . . ."; 
+    ". . . . . . Dealer Dealer Dealer . . . . . ."
+    ". . . . . . DealerTotal DealerTotal DealerTotal . . . . . ."
+    ". . . . . Message Message Message Message Message . . . . ."
+    ". Player2 Player2 . . . PlayerTotal PlayerTotal PlayerTotal PlayerMenu PlayerMenu . Player3 Player3 ."
+    ". Player2 Player2 . . . Player Player Player PlayerMenu PlayerMenu . Player3 Player3 ."
+    ". . . . . . Betting Betting Betting PlayerMenu PlayerMenu . . . ."
+    ". . . . . . Score Score Score PlayerMenu PlayerMenu . . . ."; 
+  width:98vw;
+  height:98vh;
+  color:white;
 }
 
 #dealerArea{
-  grid-area:2/4/3/6;
+  grid-area:Dealer;
+  grid-area:1/7/2/10;
   border-style:dotted;
 }
-#discardArea{
+#dealerTotal{
+  grid-area:DealerTotal;
+  grid-area:2/7/3/10;
+  place-self: center;
+  margin: 0 0;
+  }
+/* #discardArea{
   grid-area:2/8/3/9;
   border-style:dotted;
-}
+} */
 #messageArea{
-  grid-area:3/3/5/7;
+  grid-area:Message;
+  grid-area:3/6/4/11;
   border-style:dotted;
 }
+#playerTotal{
+  grid-area:PlayerTotal;
+  grid-area:4/7/5/10;
+  place-self: center;
+  margin: 0 0;
+  
+}
+
 #playerArea{
-  grid-area:5/4/6/6;
+  grid-area:Player;
+  grid-area:5/7/6/10;
   border-style:dotted;
   
 }
 #scoreboard{
-  grid-area:6/1/7/9;
-  border-style:solid;
+  grid-area:Score;
+  grid-area:7/7/8/10;
+  place-self:center;
+  border-style: solid none none none;
+  border-radius: 70%;
+  padding:10px 20px;
+  background-color:black;
+
 }
+
 #playerHand{
   width:50%;
   margin-left:auto;
@@ -43,6 +75,7 @@ body {
 }
 #dealerHand{
   width:50%;
+  
   margin-left:auto;
   margin-right:auto;
   justify-content: center;
@@ -50,9 +83,10 @@ body {
   grid-template-columns: repeat(auto-fit, minmax(10px, max-content));
 }
 
-
-
 .playerMove{
+  grid-area:PlayerMenu;
+  grid-area:4/10/8/12;
+  place-self:center stretch;
   visibility: visible;
 }
 
@@ -62,8 +96,9 @@ body {
   color: white; /* White text */
   padding: 10px 10px; /* Some padding */
   cursor: pointer; /* Pointer/hand icon */
-  width:6em;
-  display: block; /* Make the buttons appear below each other */
+  width:25%;
+  display:block;
+  
 }
 .btn-group button:not(:last-child) {
   border-bottom: none; /* Prevent double borders */

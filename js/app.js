@@ -186,7 +186,7 @@ function dealerDrawPhase(){
   drawCard()
   dealerHand.push(cardPicked)
   let newCard = document.createElement("div")
-  newCard.setAttribute("class", `card large back-blue`)
+  newCard.setAttribute("class", `card back-blue`)
   dealerHandElem.appendChild(newCard)
   console.log("Draw Hand " + dealerHand)
 }
@@ -272,7 +272,7 @@ function dRender(){
 function renderCard(cardPicked, idx, location){
   let newCard = document.createElement("div")
   //newCard.classList.add("card", "large", `${cardPicked}`)
-  newCard.setAttribute("class", `card large ${cardPicked}`)
+  newCard.setAttribute("class", `card ${cardPicked}`)
   //newCard.innerHTML = ""
   location.appendChild(newCard)
 }
