@@ -1,12 +1,11 @@
 body {  
   display: grid; 
-  /* background-image: url(../images/greenbackground.png);
-  background-size:contain; */
   /* background: rgb(39,68,68);
-background: linear-gradient(180deg, rgba(39,68,68,1) 0%, rgba(50,86,86,1) 80%, rgba(75,119,119,1) 100%); */
-background: rgb(39,68,68);
-background: linear-gradient(180deg, rgba(39,68,68,1) 30%, rgba(50,86,86,1) 70%, rgba(75,119,119,1) 100%);
-background-size:auto;
+background: linear-gradient(180deg, rgba(39,68,68,1) 0%, rgba(50,86,86,1) 80%, rgba(75,119,119,1) 100%);  */
+/* background: #274444;
+background: linear-gradient(180deg, rgba(39,68,68,1) 30%, rgba(50,86,86,1) 70%, #4b7777 100%); */
+background-image: url(../images/table2.png);
+/* background-size:auto; */
   display: grid; 
   grid-template-columns: 6.66% 6.66% 6.66% 6.66% 6.66% 6.66% 6.66% 6.66% 6.66% 6.66% 6.66% 6.66% 6.66% 6.66% 6.66%; 
   grid-template-rows: 20% 5% 30% 5% 20% 10% 10%; 
@@ -27,8 +26,8 @@ background-size:auto;
 #dealerArea{
   grid-area:Dealer;
   grid-area:1/7/2/10;
-  border-style:dotted;
-  border-radius: 10%;
+  /* border-style:dotted;
+  border-radius: 10%; */
 }
 #dealerTotal{
   grid-area:DealerTotal;
@@ -58,8 +57,8 @@ background-size:auto;
 #playerArea{
   grid-area:Player;
   grid-area:5/7/6/10;
-  border-style:dotted;
-  border-radius: 10%;
+  /* border-style:dotted;
+  border-radius: 10%; */
 }
 #scoreboard{
   grid-area:Score;
