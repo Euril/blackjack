@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
+  <h1 class="blackjack">BLACKJACK</h1>
   <div id="dealerArea" class="container">
     <div id="dealerHand"></div>
     
@@ -18,7 +19,6 @@
     <div id="discardPile" class="card large outline"></div> -->
   <h3 id="dealerTotal">( - )</h3> 
   <div id="messageArea" class="container">
-    <h1>Hello!</h1>
     <h1 id="phaseGame">Draw!</h1>
   </div>
     
@@ -29,10 +29,20 @@
     
   </div>
   <div class="playerMove btn-group ">
-    <button id="hit">Hit</button>
-    <button class="blank"></button>
-    <button class="blank"></button>
-    <button id="stand">Stand</button>
+    <button class ="moves">Moves</button>
+    <div class="moveList">
+      <button id="hit">Hit</button>
+      <button class="blank"></button>
+      <button class="blank"></button>
+      <button id="stand">Stand</button>
+    </div>
+    <button class ="movesBet">Bet</button>
+    <div class="betList">
+      <button id="bet100">100</button>
+      <button class="blank"></button>
+      <button class="blank"></button>
+      <button id="bet500">500</button>
+    </div>
   </div>
   <div id="betting"></div>
   <footer id="scoreboard"></footer>

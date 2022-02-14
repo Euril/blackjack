@@ -24,6 +24,7 @@ body {
   grid-area:Dealer;
   grid-area:1/7/2/10;
   border-style:dotted;
+  border-radius: 10%;
 }
 #dealerTotal{
   grid-area:DealerTotal;
@@ -38,7 +39,9 @@ body {
 #messageArea{
   grid-area:Message;
   grid-area:3/6/4/11;
-  border-style:dotted;
+  /* border-style:dotted; */
+  place-self: center;
+  
 }
 #playerTotal{
   grid-area:PlayerTotal;
@@ -52,7 +55,7 @@ body {
   grid-area:Player;
   grid-area:5/7/6/10;
   border-style:dotted;
-  
+  border-radius: 10%;
 }
 #scoreboard{
   grid-area:Score;
@@ -86,23 +89,48 @@ body {
 .playerMove{
   grid-area:PlayerMenu;
   grid-area:4/10/8/12;
-  place-self:center stretch;
+  
+}
+
+.moves{
   visibility: visible;
 }
 
+.moveList{
+  visibility:hidden;
+  
+}
+
+.movesBet{
+  visibility:hidden;
+}
+.betList{
+  visibility: hidden;
+}
+
+
+
+
 .btn-group button {
-  background-color: #41aa04; /* Green background */
-  border: 1px solid rgb(0, 0, 0); /* Green border */
-  color: white; /* White text */
-  padding: 10px 10px; /* Some padding */
-  cursor: pointer; /* Pointer/hand icon */
-  width:25%;
+  background-color: black; 
+  border: 2px solid #D5AF37;
+  border-radius:5%;
+  color: white; 
+  margin: 10px 0 0 10px;
+  padding: 10px 10px; 
+  
+  width:50%;
   display:block;
   
 }
-.btn-group button:not(:last-child) {
-  border-bottom: none; /* Prevent double borders */
-}
-.btn-group button:hover {
-  background-color: #3e8e41;
+/*prevents double borders*/
+/* .btn-group button:not(:last-child) {
+  border-bottom: none;
+} */
+.moveList button:hover {
+  background: rgb(162,134,44);
+background: linear-gradient(350deg, rgba(162,134,44,1) 30%, rgba(212,175,55,1) 60%, rgba(255,255,255,1) 100%);
+  font-weight:bolder;
+  color:black;
+
 }
