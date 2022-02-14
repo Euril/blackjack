@@ -21,7 +21,7 @@ let discardDeck = []
 let blackjackDeck = [...sixDeckOrig]
 
 //test deck for Ace testing
- //let blackjackDeck = ["dA","dK","dK","dK","d10","dK","hA","hK","hK","hJ","h10","cA","cQ","cK","cJ","cK","sA","sK","sK","sK","s10",'dA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA']
+//  let blackjackDeck = ["dA","dK","dK","dK","d10","dK","hA","hK","hK","hJ","h10","cA","cQ","cK","cJ","cK","sA","sK","sK","sK","s10",'dA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA']
 //let blackjackDeck = ['dA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','dA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','dA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','dA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','dA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','dA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','dA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','dA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA']
 //test deck for low number testing
 //let blackjackDeck = ["d04","d03","d02", "d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02"]
@@ -75,7 +75,9 @@ function init(){
   scoreArea.textContent = `Score: ${score}p`
   console.log(blackjackDeck.length)
   if(blackjackDeck.length < 156){
+    playGame.textContent = "Shuffling Deck"
     shuffleDeck()
+    setTimeout(init, 5000)
   }
 }
 
@@ -95,8 +97,7 @@ function drawHands(){
   setTimeout(handleHit, 2500)
   setTimeout(dealerDrawPhase,4000)
   //setTimeout(dealerHit, 4000)
-  
-  setTimeout(playerPhase, 5000)
+  setTimeout(playerPhase, 6000)
 
 }
 
@@ -110,6 +111,12 @@ function playerPhase(){
   //   score = score - 1000 
   //   setTimeout(clearPhase, 2000)
   // }
+  if(playerTotal === 21 && playerHand.length === 2){
+    playGame.textContent = "BLACKJACK"
+    setTimeout(dealerPhase,4000)  
+    document.querySelector(".moveList").style.visibility="hidden"
+  }
+  
 }
 
 function dealerPhase(){
@@ -118,6 +125,11 @@ function dealerPhase(){
   dRender()
   cardValue(dealerHand)
   dTotalRender()
+  if(dealerTotal === 21 && playerTotal === 21){
+    playGame.textContent = "Tie"
+    setTimeout(clearPhase,2000)  
+  }
+
   if(dealerTotal < 17){
     setTimeout(dealerHit,1500) //recursion of the function to keep drawing until 17+ 
     setTimeout(dealerPhase,2000)
@@ -127,7 +139,8 @@ function dealerPhase(){
   }
   if(dealerTotal === 'Bust'){
     score = score + 1000
-    setTimeout(clearPhase,1000)  
+    playGame.textContent = "You Win"
+    setTimeout(clearPhase,2000)  
   }
 }
 
@@ -175,6 +188,11 @@ function handleHit(){
   cardValue(playerHand)
   //handTotal(playerHand)
   p1TotalRender()
+  if(playerTotal === 21 && playerHand.length > 2){
+    playGame.textContent = "21"
+    document.querySelector(".moveList").style.visibility="hidden"
+    setTimeout(dealerPhase, 2000)
+  }
   if(playerTotal === "Bust"){
     playGame.textContent = "You Busted"
     document.querySelector(".moveList").style.visibility="hidden"
@@ -205,10 +223,10 @@ function cardValue(handArray){
   totalHolder = 0
   tempArray = [] // empty tempArray
   tempArray = [...handArray] //fill tempArray
-  
+  let isThereAnAce = false
   tempArray.forEach(function(card){
     valueHolder = card.slice(1)
-    console.log(tempArray[0])
+
     if(isNaN(parseInt(valueHolder)) === false){
       totalHolder = totalHolder + parseInt(valueHolder)
       }
@@ -216,14 +234,13 @@ function cardValue(handArray){
       totalHolder += 10
     }
     if(valueHolder === 'A'){
-      aceCardValue()
+      totalHolder+= 1
+      isThereAnAce = true
     }
-    // if(card[0] === 'A' && totalHolder > 21){
-    //   totalHolder = totalHolder - 10
-    // }
-      //console.log(totalHolder)
     })
-  
+  if(totalHolder < 12 && isThereAnAce === true){
+    totalHolder +=10
+  }
   if(totalHolder > 21){
     totalHolder = 'Bust'
   }
@@ -233,18 +250,18 @@ function cardValue(handArray){
 
 //function to deal with Ace 11 or 1 situtation
 //🔥🔥⚠️ ace card value is still broken when ace is the first card drawn
-function aceCardValue(){
+// function aceCardValue(){
 
-    if(valueHolder === 'A' && totalHolder < 11){
-      totalHolder += 11
-      if(totalHolder >21){
-        totalHolder = totalHolder - 10
-      }
-    }else if(valueHolder === 'A' && totalHolder >= 11){
-      totalHolder += 1
-    }
+//     if(valueHolder === 'A' && totalHolder < 11){
+//       totalHolder += 11
+//       if(totalHolder >21){
+//         totalHolder = totalHolder - 10
+//       }
+//     }else if(valueHolder === 'A' && totalHolder >= 11){
+//       totalHolder += 1
+//     }
     
-}
+// }
 function p1TotalRender(){
   playerTotal = totalHolder
   player1TotalElem.textContent = `( ${playerTotal} )` //player total render

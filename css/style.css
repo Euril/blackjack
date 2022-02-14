@@ -8,10 +8,10 @@ background-image: url(../images/table2.png);
 /* background-size:auto; */
   display: grid; 
   /* grid-template-columns: 6.66% 6.66% 6.66% 6.66% 6.66% 6.66% 6.66% 6.66% 6.66% 6.66% 6.66% 6.66% 6.66% 6.66% 6.66%;  */
-  /*👇hard coded for 1600x900*/
+  /*👇hard coded for 1600x900(796vh)*/
   grid-template-columns: 104.42px 104.42px 104.42px 104.42px 104.42px 104.42px 104.42px 104.42px 104.42px 104.42px 104.42px 104.42px 104.42px 104.42px 104.42px;
   /* grid-template-rows: 20% 5% 30% 5% 20% 10% 10%;  */
-  /*👇hard coded for 1600x900*/
+  /*👇hard coded for 1600x900(796vh)*/
   grid-template-rows: 156.02px 39px 234.02px 39px 156.02px 78px 78px; 
   gap: 0px 0px; 
   grid-template-areas: 
@@ -70,6 +70,7 @@ background-image: url(../images/table2.png);
   place-self:center;
   border-style: solid none none none;
   border-radius: 70%;
+  margin-top:-20px; 
   padding:10px 20px;
   background-color:black;
 
@@ -101,15 +102,18 @@ background-image: url(../images/table2.png);
 
 .moves{
   visibility: visible;
+  
 }
 
 .moveList{
   visibility:hidden;
   
+  
 }
 
 .movesBet{
   visibility:hidden;
+  
 }
 .betList{
   visibility: hidden;
@@ -123,7 +127,7 @@ background-image: url(../images/table2.png);
   border: 2px solid #D5AF37;
   border-radius:5%;
   color: white; 
-  margin: 10px 0 0 10px;
+  /* margin: 10px 0 0 10px; */
   padding: 10px 10px; 
   
   width:50%;
@@ -140,4 +144,14 @@ background: linear-gradient(350deg, rgba(162,134,44,1) 30%, rgba(212,175,55,1) 6
   font-weight:bolder;
   color:black;
 
+}
+
+.gold-gradient-text{
+  background-image: linear-gradient(350deg, rgba(162,134,44,1) 30%, rgba(212,175,55,1) 40%, rgba(255,255,255,1) 100%);
+  background: size 100%;
+  -webkit-background-clip:text;
+  -moz-background-clip:text;
+  /* background-clip:text; */
+  -webkit-text-fill-color:transparent;
+  -moz-text-fill-color:transparent;
 }
