@@ -233,6 +233,7 @@ function cardValue(handArray){
     if(valueHolder === 'Q' || valueHolder === 'K' || valueHolder === 'J'){
       totalHolder += 10
     }
+    //I gave up on figuring out Ace logic had to search on stackoverflow for hints found amazing pseudocode and now I feel dum for not figuring it out myself... kept adding 11 then minusing when I should have done it the other way add 1 and if under 12 add 10...
     if(valueHolder === 'A'){
       totalHolder+= 1
       isThereAnAce = true

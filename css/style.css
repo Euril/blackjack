@@ -14,14 +14,14 @@ background-image: url(../images/table2.png);
   /*👇hard coded for 1600x900(796vh)*/
   grid-template-rows: 156.02px 39px 234.02px 39px 156.02px 78px 78px; 
   gap: 0px 0px; 
-  grid-template-areas: 
-    ". . . . . . Dealer Dealer Dealer . . . . . ."
+  /* grid-template-areas: 
+    ". . . . . Dealer Dealer Dealer Dealer Dealer . . . . ."
     ". . . . . . DealerTotal DealerTotal DealerTotal . . . . . ."
     ". . . . . Message Message Message Message Message . . . . ."
-    ". Player2 Player2 . . . PlayerTotal PlayerTotal PlayerTotal PlayerMenu PlayerMenu . Player3 Player3 ."
-    ". Player2 Player2 . . . Player Player Player PlayerMenu PlayerMenu . Player3 Player3 ."
-    ". . . . . . Betting Betting Betting PlayerMenu PlayerMenu . . . ."
-    ". . . . . . Score Score Score PlayerMenu PlayerMenu . . . ."; 
+    ". Player2 Player2 . betMove betMove PlayerTotal PlayerTotal PlayerTotal PlayerMenu PlayerMenu . Player3 Player3 ."
+    ". Player2 Player2 . betMove betMove Player Player Player PlayerMenu PlayerMenu . Player3 Player3 ."
+    ". . . . betMove betMove Betting Betting Betting PlayerMenu PlayerMenu . . . ."
+    ". . . . betMove betMove Score Score Score PlayerMenu PlayerMenu . . . .";  */
   width:98vw;
   height:98vh;
   color:white;
@@ -68,7 +68,7 @@ background-image: url(../images/table2.png);
   grid-area:Score;
   grid-area:7/7/8/10;
   place-self:center;
-  border-style: solid none none none;
+  border-style: none none solid none;
   border-radius: 70%;
   margin-top:-20px; 
   padding:10px 20px;
@@ -94,51 +94,79 @@ background-image: url(../images/table2.png);
   grid-template-columns: repeat(auto-fit, minmax(10px, max-content));
 }
 
+
+.btn-group button {
+  background-color: black; 
+  border-style: none none solid none;
+  border-color:white;
+  
+  
+  border-radius:30%;
+  color: white; 
+  margin: 10px 0 0 0;
+  padding: 10px 10px; 
+  
+  width:100%;
+  display:block;
+  
+}
+
 .playerMove{
   grid-area:PlayerMenu;
   grid-area:4/10/8/12;
   
 }
 
-.moves{
+
+#moves{
   visibility: visible;
+  width:60%;
+  border-radius: 50%;
+  margin-left:auto;
+  margin-right:auto;
   
 }
 
 .moveList{
   visibility:hidden;
-  
+  display:grid;
+  grid-template-rows:54.6px 54.6px 54.6px 54.6px 54.6px;
   
 }
 
-.movesBet{
-  visibility:hidden;
-  
+.betMove{
+  grid-area:betMove;
+  grid-area:4/5/8/7;
 }
+
+#movesBet{
+  visibility:visible;
+  width:60%;
+  border-radius: 70%;
+  margin-left:auto;
+  margin-right:auto;
+}
+
 .betList{
   visibility: hidden;
+  display:grid;
+  grid-template-rows:90px 90px 90px;
 }
 
 
 
-
-.btn-group button {
-  background-color: black; 
-  border: 2px solid #D5AF37;
-  border-radius:5%;
-  color: white; 
-  /* margin: 10px 0 0 10px; */
-  padding: 10px 10px; 
-  
-  width:50%;
-  display:block;
-  
-}
 /*prevents double borders*/
 /* .btn-group button:not(:last-child) {
   border-bottom: none;
 } */
 .moveList button:hover {
+  background: rgb(162,134,44);
+background: linear-gradient(350deg, rgba(162,134,44,1) 30%, rgba(212,175,55,1) 60%, rgba(255,255,255,1) 100%);
+  font-weight:bolder;
+  color:black;
+
+}
+.betList button:hover {
   background: rgb(162,134,44);
 background: linear-gradient(350deg, rgba(162,134,44,1) 30%, rgba(212,175,55,1) 60%, rgba(255,255,255,1) 100%);
   font-weight:bolder;
