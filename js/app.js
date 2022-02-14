@@ -18,10 +18,10 @@ let dCardToRemove
 
 let discardDeck = []
 
-let blackjackDeck = [...sixDeckOrig]
+//let blackjackDeck = [...sixDeckOrig]
 
 //test deck for Ace testing
-// let blackjackDeck = ["dA","dQ","dK","dJ","d10","d09","hA","hQ","hK","hJ","h10","cA","cQ","cK","cJ","c10","sA","sQ","sK","sJ","s10"]
+ let blackjackDeck = ["dA","dK","dK","dK","d10","dK","hA","hK","hK","hJ","h10","cA","cQ","cK","cJ","cK","sA","sK","sK","sK","s10",'dA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA']
 //let blackjackDeck = ['dA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','dA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','dA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','dA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','dA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','dA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','dA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','dA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA']
 //test deck for low number testing
 //let blackjackDeck = ["d04","d03","d02", "d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02"]
@@ -74,9 +74,9 @@ function init(){
   playGame.textContent = "Click Here to Start"
   scoreArea.textContent = `Score: ${score}p`
   console.log(blackjackDeck.length)
-  if(blackjackDeck.length < 156){
-    shuffleDeck()
-  }
+  // if(blackjackDeck.length < 156){
+  //   shuffleDeck()
+  // }
 }
 
 
@@ -208,7 +208,7 @@ function cardValue(handArray){
   
   tempArray.forEach(function(card){
     valueHolder = card.slice(1)
-    
+    console.log(tempArray[0])
     if(isNaN(parseInt(valueHolder)) === false){
       totalHolder = totalHolder + parseInt(valueHolder)
       }
