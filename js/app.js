@@ -11,6 +11,7 @@ let winner
 let round
 let score = 0
 let playerHand = []
+let bet
 
 let dealerHand = []
 
@@ -40,6 +41,7 @@ let playerMenu = document.getElementById('btn-group')
 //let playGame = document.getElementById('messageArea')
 let playGame = document.getElementById('phaseGame')
 let scoreArea = document.getElementById('scoreboard')
+let betArea = document.getElementById('betting')
 
 let playerHandElem = document.getElementById('playerHand')
 let dealerHandElem = document.getElementById('dealerHand')
@@ -50,7 +52,6 @@ let dealerTotalElem = document.getElementById('dealerTotal')
 /*----------------------------- Event Listeners -----------------------------*/
 document.querySelector('.moveList').addEventListener('click', evt =>{
   if(evt.target.id === 'hit'){
-    //console.log("did the hit")
     handleHit()
   }
   if(evt.target.id === 'stand'){
@@ -65,18 +66,49 @@ playGame.addEventListener('click', evt => {
     drawHands()
   }
 })
+document.querySelector('.betList').addEventListener('click', evt =>{
+  if(evt.target.id === 'bet100'){
+    handleBet(100)
+  }
+  if(evt.target.id === 'bet500'){
+    handleBet(500)
+  }
+  if(evt.target.id === 'bet1000'){
+    handleBet(1000)
+  }
+})
 
 
 
 /*-------------------------------- Functions --------------------------------*/
 init()
 
+function handleBet(num){
+bet = num
+if((score - bet) < 0){
+  playGame.textContent="Not Enough Chips"
+  setTimeout(betPhase, 4000)
+}else{
+  betArea.textContent=`Bet: ${bet}p`
+  document.querySelector(".betList").style.visibility="hidden"
+  setTimeout(init, 1000)
+}
+function betPayout(bet){
+  score = score + (bet * 2)
+}
+}
+
+function betPhase{
+  phase = "BET"
+  playGame.textContent="Place Your Bet"
+  document.querySelector(".betList").style.visibility="visible"
+  scoreArea.textContent = `Score: ${score}p`
+}
 
 function init(){
   phase = "INIT"
   playGame.textContent = "Click Here to Start"
   scoreArea.textContent = `Score: ${score}p`
-  console.log(blackjackDeck.length)
   if(blackjackDeck.length < 156){
     playGame.textContent = "Shuffling Deck"
     shuffleDeck()

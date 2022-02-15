@@ -73,7 +73,13 @@ background-image: url(../images/table2.png);
   margin-top:-20px; 
   padding:10px 20px;
   background-color:black;
-
+}
+#betting{
+  grid-area:betting;
+  grid-area:6/7/7/10;
+  background-color:black;
+  border:5px;
+  border-style:solid;
 }
 
 #playerHand{
