@@ -100,7 +100,6 @@ background-image: url(../images/table2.png);
   grid-template-columns: repeat(auto-fit, minmax(10px, max-content));
 }
 
-
 .btn-group button {
   background-color: black; 
   border-style: none none solid none;

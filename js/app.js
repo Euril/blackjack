@@ -9,9 +9,10 @@ dealCard.volume = .2
 let phase
 let winner
 let round
-let score = 0
+let score = 500
 let playerHand = []
 let bet
+let outcome
 
 let dealerHand = []
 
@@ -28,7 +29,7 @@ let blackjackDeck = [...sixDeckOrig]
 //  let blackjackDeck = ["dA","dK","dK","dK","d10","dK","hA","hK","hK","hJ","h10","cA","cQ","cK","cJ","cK","sA","sK","sK","sK","s10",'dA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA']
 //let blackjackDeck = ['dA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','dA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','dA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','dA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','dA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','dA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','dA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','dA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA','cA','dA','cA']
 //test deck for low number testing
-//let blackjackDeck = ["d04","d03","d02", "d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02"]
+//let blackjackDeck = ["d04","d03","d02", "d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02", "d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02", "d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02", "d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02","d04","d03","d02"]
 
 let playerTotal = 0
 let dealerTotal = 0
@@ -63,15 +64,18 @@ document.querySelector('.moveList').addEventListener('click', evt =>{
 playGame.addEventListener('click', evt => {
   if(evt.target.id ==="phaseGame" && phase === "INIT"){
     console.log('start a phase')
-    drawHands()
+    // drawHands()
+    betPhase()
   }
 })
 document.querySelector('.betList').addEventListener('click', evt =>{
   if(evt.target.id === 'bet100'){
     handleBet(100)
+    
   }
   if(evt.target.id === 'bet500'){
     handleBet(500)
+    
   }
   if(evt.target.id === 'bet1000'){
     handleBet(1000)
@@ -87,22 +91,28 @@ function handleBet(num){
 bet = num
 if((score - bet) < 0){
   playGame.textContent="Not Enough Chips"
-  setTimeout(betPhase, 4000)
+  document.querySelector(".betList").style.visibility="hidden"
+  setTimeout(init, 2000)
 }else{
   betArea.textContent=`Bet: ${bet}p`
   document.querySelector(".betList").style.visibility="hidden"
-  setTimeout(init, 1000)
+  setTimeout(drawHands, 1000)
+  }
 }
 function betPayout(bet){
-  score = score + (bet * 2)
-}
-}
-
-function betPhase{
-  phase = "BET"
-  playGame.textContent="Place Your Bet"
-  document.querySelector(".betList").style.visibility="visible"
-  scoreArea.textContent = `Score: ${score}p`
+  console.log(outcome)
+  if(outcome === "W"){
+    score = score + bet
+  }
+  if(outcome === "L"){
+    score = score - bet
+  }
+  if(outcome === "BJ"){
+    score = score + (bet * 1.5)
+  }
+  if(outcome === "T"){
+    score = score + 0
+  }
 }
 
 function init(){
@@ -115,7 +125,11 @@ function init(){
     setTimeout(init, 5000)
   }
 }
-
+function betPhase(){
+  phase = "BET"
+  playGame.textContent="Place Your Bet"
+  document.querySelector(".betList").style.visibility="visible"
+}
 
 //function to take card from blackjackDeck
 function drawCard(){
@@ -149,6 +163,7 @@ function playerPhase(){
   // }
   if(playerTotal === 21 && playerHand.length === 2){
     playGame.textContent = "BLACKJACK"
+    outcome = "BJ"
     setTimeout(dealerPhase,4000)  
     document.querySelector(".moveList").style.visibility="hidden"
   }
@@ -161,8 +176,9 @@ function dealerPhase(){
   dRender()
   cardValue(dealerHand)
   dTotalRender()
-  if(dealerTotal === 21 && playerTotal === 21){
+  if(dealerTotal === 21 && playerTotal === 21 && dealerHand.length===2){
     playGame.textContent = "Tie"
+    outcome = "T"
     setTimeout(clearPhase,2000)  
   }
   
@@ -174,7 +190,8 @@ function dealerPhase(){
     setTimeout(comparePhase,2000)
   }
   if(dealerTotal === 'Bust'){
-    score = score + 1000
+    // score = score + 1000
+    outcome = "W"
     playGame.textContent = "You Win"
     setTimeout(clearPhase,3000)  
   }
@@ -185,36 +202,37 @@ function comparePhase(){
   playGame.textContent = "comparing text holder"
   if(playerTotal === dealerTotal){
     playGame.textContent = "Push"
+    outcome = "T"
   }else if(playerTotal > dealerTotal){
     playGame.textContent = "You Win"
-    score = score + 1000
+    // score = score + 1000
+    outcome = "W"
   }else{
     playGame.textContent = "Dealer Wins"
-    score = score - 1000
+    // score = score - 1000
+    outcome = "L"
   }
   setTimeout(clearPhase, 3000)
 }
 
 function clearPhase(){
   phase = "CLEAR"
+  betPayout(bet)
   playerHand=[]
   p1Render()
   dealerHand=[]
   dRender()
+  betArea.textContent=""
   playerTotal = "-"
   player1TotalElem.textContent = `( ${playerTotal} )`
   dealerTotal = "-"
   dealerTotalElem.textContent = `( ${dealerTotal} )`
-
-  //playerHandElem.setAttribute('class', "card large outline")
-  //dealerHandElem.setAttribute('class', "card large outline")
   init()
 }
 
 function handleHit(){
   drawCard()
   playerHand.push(cardPicked)
-
   p1Render()
   cardValue(playerHand)
   //handTotal(playerHand)
@@ -227,7 +245,8 @@ function handleHit(){
   if(playerTotal === "Bust"){
     playGame.textContent = "You Busted"
     document.querySelector(".moveList").style.visibility="hidden"
-    score = score - 1000 
+    // score = score - 1000 
+    outcome = "L"
     setTimeout(clearPhase, 3000)
   }
 }
@@ -280,7 +299,6 @@ function cardValue(handArray){
     totalHolder = 'Bust'
   }
   
-  //ocationTotal.textContent = `( ${totalHolder} )`
 }
 
 //function to deal with Ace 11 or 1 situtation
@@ -306,13 +324,10 @@ function dTotalRender(){
   dealerTotalElem.textContent = `( ${dealerTotal} )`
 }
 
-
-
 function p1Render(){
   playerHandElem.innerHTML= ""
   playerHand.forEach((card, idx)=>{
   renderCard(card, idx, playerHandElem)
-  
 })
 }
 function dRender(){
@@ -329,25 +344,6 @@ function renderCard(cardPicked, idx, location){
   //newCard.innerHTML = ""
   location.appendChild(newCard)
 }
-
-/*
-function dRender(cardPicked){
-  // Remove outline class when first card is picked
-  if (dealerHand.length === 1) {  
-    dealerHandElem.classList.remove("outline")
-  }
-   // Removes previous picked card
-    if(dealerHand.length > 1){
-      dealerHandElem.classList.remove(dCardToRemove)
-    }
-  dCardToRemove=cardPicked
-  dealerHandElem.classList.add(cardPicked)
-  dealerTotal = totalHolder
-  dealerTotalElem.textContent = `( ${dealerTotal} )` //dealer total render
-  
-  //console.log(`Dealer: ${dealerHand}`)
-  //console.log(dealerTotal)
-}*/
 
 function shuffleDeck(){
   console.log("Shuffled deck")
@@ -446,3 +442,22 @@ function handTotal(handArray){
 //   handTotal(dealerHand)
 //   dRender(cardPicked)
 // }
+
+/*
+function dRender(cardPicked){
+  // Remove outline class when first card is picked
+  if (dealerHand.length === 1) {  
+    dealerHandElem.classList.remove("outline")
+  }
+   // Removes previous picked card
+    if(dealerHand.length > 1){
+      dealerHandElem.classList.remove(dCardToRemove)
+    }
+  dCardToRemove=cardPicked
+  dealerHandElem.classList.add(cardPicked)
+  dealerTotal = totalHolder
+  dealerTotalElem.textContent = `( ${dealerTotal} )` //dealer total render
+  
+  //console.log(`Dealer: ${dealerHand}`)
+  //console.log(dealerTotal)
+}*/
