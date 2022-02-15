@@ -12,7 +12,7 @@ let round
 let score = 2000
 let playerHand = []
 let bet
-let outcome
+let outcome = ""
 
 let dealerHand = []
 
@@ -90,35 +90,6 @@ document.querySelector('.betList').addEventListener('click', evt =>{
 /*-------------------------------- Functions --------------------------------*/
 init()
 
-function handleBet(num){
-bet = num
-if((score - bet) < 0){
-  playGame.textContent="Not Enough Chips"
-  document.querySelector(".betList").style.visibility="hidden"
-  setTimeout(init, 2000)
-}else{
-  betArea.textContent=`Bet: ${bet}p`
-  document.querySelector(".betList").style.visibility="hidden"
-  setTimeout(drawHands, 1000)
-  }
-}
-function betPayout(bet){
-  console.log(outcome)
-  if(outcome === "W"){
-    score = score + bet
-  }
-  if(outcome === "L"){
-    score = score - bet
-  }
-  if(outcome === "BJ"){
-    score = score + (bet * 1.5)
-  }
-  if(outcome === "T"){
-    score = score + 0
-  }
-
-}
-
 function init(){
   phase = "INIT"
   playGame.textContent = "Click Here to Start"
@@ -166,19 +137,33 @@ function playerPhase(){
   phase= "PLAYER1"
   playGame.textContent = "Player Phase"
   document.querySelector(".moveList").style.visibility="visible"
-  // if(playerTotal === "Bust"){
-  //   playGame.textContent = "You Busted"
-  //   document.querySelector(".playerMove").style.visibility="hidden"
-  //   score = score - 1000 
-  //   setTimeout(clearPhase, 2000)
-  // }
+  
   if(playerTotal === 21 && playerHand.length === 2){
     playGame.textContent = "BLACKJACK"
     outcome = "BJ"
-    setTimeout(dealerPhase,4000)  
     document.querySelector(".moveList").style.visibility="hidden"
+    setTimeout(blackjackPhase,4000)  
   }
   
+}
+//function in case player gets blackjack, checks if dealer also got BJ to tie or its the players win
+function blackjackPhase(){
+  phase= "BLACKJACK"
+  playGame.textContent= "Checking"
+
+  dRender()
+  cardValue(dealerHand)
+  dTotalRender()
+  
+  if(dealerTotal === 21){
+    playGame.textContent = "Tie"
+    outcome = "T"
+    setTimeout(clearPhase,2000)  
+  }else{
+    playGame.textContent = "BLACKJACK"
+    //outcome = "BJ" //outcome would still be BJ I think
+    setTimeout(clearPhase,2000)
+  }
 }
 
 function dealerPhase(){
@@ -187,12 +172,8 @@ function dealerPhase(){
   dRender()
   cardValue(dealerHand)
   dTotalRender()
-  if(dealerTotal === 21 && playerTotal === 21 && dealerHand.length===2){
-    playGame.textContent = "Tie"
-    outcome = "T"
-    setTimeout(clearPhase,2000)  
-  }
   
+  //can't use a while loop here because setTimeout doesn't work with while loops and I want to simulate a dealer drawing one by one
   if(dealerTotal < 17){
     setTimeout(dealerHit,1500) //recursion of the function to keep drawing until 17+ 
     setTimeout(dealerPhase,2000)
@@ -238,8 +219,10 @@ function clearPhase(){
   betArea.textContent=""
   playerTotal = "-"
   player1TotalElem.textContent = `( ${playerTotal} )`
+  player1TotalElem.removeAttribute("class") //removes color text
   dealerTotal = "-"
   dealerTotalElem.textContent = `( ${dealerTotal} )`
+  outcome = ""
   setTimeout(init, 2000)
 }
 
@@ -328,8 +311,40 @@ function cardValue(handArray){
 //     }
     
 // }
+function handleBet(num){
+  bet = num
+  if((score - bet) < 0){
+    playGame.textContent="Not Enough Chips"
+    document.querySelector(".betList").style.visibility="hidden"
+    setTimeout(init, 2000)
+  }else{
+    betArea.textContent=`Bet: ${bet}p`
+    document.querySelector(".betList").style.visibility="hidden"
+    setTimeout(drawHands, 1000)
+    }
+  }
+
+function betPayout(bet){
+  if(outcome === "W"){
+    score = score + bet
+  }
+  if(outcome === "L"){
+    score = score - bet
+  }
+  if(outcome === "BJ"){
+    score = score + (bet * 1.5)
+  }
+  if(outcome === "T"){
+    score = score + 0
+  }
+
+}
+
 function p1TotalRender(){
   playerTotal = totalHolder
+  if(playerTotal === "Bust"){
+    player1TotalElem.classList.add("redText")
+  }
   player1TotalElem.textContent = `( ${playerTotal} )` //player total render
 }
 function dTotalRender(){
@@ -489,3 +504,11 @@ function dRender(cardPicked){
   //console.log(`Dealer: ${dealerHand}`)
   //console.log(dealerTotal)
 }*/
+
+//inside player phase
+// if(playerTotal === "Bust"){
+  //   playGame.textContent = "You Busted"
+  //   document.querySelector(".playerMove").style.visibility="hidden"
+  //   score = score - 1000 
+  //   setTimeout(clearPhase, 2000)
+  // }

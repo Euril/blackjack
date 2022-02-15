@@ -167,7 +167,7 @@ background-image: url(../images/table2.png);
   border-bottom: none;
 } */
 .moveList button:hover {
-  background: rgb(162,134,44);
+  background: #a2862c;
 background: linear-gradient(350deg, rgba(162,134,44,1) 30%, rgba(212,175,55,1) 60%, rgba(255,255,255,1) 100%);
   font-weight:bolder;
   color:black;
@@ -189,4 +189,11 @@ background: linear-gradient(350deg, rgba(162,134,44,1) 30%, rgba(212,175,55,1) 6
   /* background-clip:text; */
   -webkit-text-fill-color:transparent;
   -moz-text-fill-color:transparent;
+}
+
+.redText{
+  color:rgb(255, 0, 0);
+}
+.greenText{
+  color:rgb(80, 200, 120);
 }
