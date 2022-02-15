@@ -197,3 +197,10 @@ background: linear-gradient(350deg, rgba(162,134,44,1) 30%, rgba(212,175,55,1) 6
 .greenText{
   color:rgb(80, 200, 120);
 }
+
+.cardFlip{
+  animation: flipInX;
+}
+.cardSlideDown{
+  animation:slideInDown;
+}
