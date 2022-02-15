@@ -123,6 +123,10 @@ function init(){
   phase = "INIT"
   playGame.textContent = "Click Here to Start"
   scoreArea.textContent = `Score: ${score}p`
+  
+  if(score > 100000){
+    congrat()
+  }
   if(score <= 0){
     brokePhase()
   }
@@ -226,9 +230,7 @@ function clearPhase(){
   phase = "CLEAR"
   
   betPayout(bet)
-  if(score > 100000){
-    congrat()
-  }
+  
   playerHand=[]
   p1Render()
   dealerHand=[]
@@ -238,7 +240,7 @@ function clearPhase(){
   player1TotalElem.textContent = `( ${playerTotal} )`
   dealerTotal = "-"
   dealerTotalElem.textContent = `( ${dealerTotal} )`
-  setTimeout(init, 4000)
+  setTimeout(init, 2000)
 }
 
 function handleHit(){

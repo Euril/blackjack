@@ -88,7 +88,9 @@ background-image: url(../images/table2.png);
   margin-right:auto;
   justify-content: center;
   display:grid;
-  grid-template-columns: repeat(auto-fit, minmax(10px, max-content));
+  /* grid-template-columns: repeat(auto-fit, minmax(10px, max-content)); */
+  grid-template-columns: 10% 10% 10% 10% 10% 10% 10% 10% 10% 10%;
+  grid-template-rows: 50% 50%;
 }
 #dealerHand{
   width:50%;
@@ -97,7 +99,7 @@ background-image: url(../images/table2.png);
   margin-right:auto;
   justify-content: center;
   display:grid;
-  grid-template-columns: repeat(auto-fit, minmax(10px, max-content));
+  grid-template-columns: 10% 10% 10% 10% 10% 10% 10% 10% 10% 10%;
 }
 
 .btn-group button {
