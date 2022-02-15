@@ -1,3 +1,6 @@
+hardcoded for 1600x900 at the moment
+link to game:[https://euril.github.io/blackjack/]
+
 resources:
 SVG generator
 [https://sean.brunnock.com/SVG/SVGPathGenerator/]

@@ -74,7 +74,6 @@ playGame.addEventListener('click', evt => {
 document.querySelector('.betList').addEventListener('click', evt =>{
   if(evt.target.id === 'bet100'){
     handleBet(100)
-    
   }
   if(evt.target.id === 'bet500'){
     handleBet(500)
@@ -130,7 +129,6 @@ function drawHands(){
   setTimeout(dealerDrawPhase,4000)
   //setTimeout(dealerHit, 4000)
   setTimeout(playerPhase, 6000)
-
 }
 
 function playerPhase(){
@@ -309,7 +307,6 @@ function cardValue(handArray){
 //     }else if(valueHolder === 'A' && totalHolder >= 11){
 //       totalHolder += 1
 //     }
-    
 // }
 function handleBet(num){
   bet = num
@@ -337,13 +334,19 @@ function betPayout(bet){
   if(outcome === "T"){
     score = score + 0
   }
-
 }
 
 function p1TotalRender(){
   playerTotal = totalHolder
+  player1TotalElem.removeAttribute("class") //removes color text
   if(playerTotal === "Bust"){
     player1TotalElem.classList.add("redText")
+  }
+  if(playerTotal < 21){
+    player1TotalElem.classList.add("greenText")
+  }
+  if(playerTotal === 21){
+    player1TotalElem.classList.add("gold-gradient-text")
   }
   player1TotalElem.textContent = `( ${playerTotal} )` //player total render
 }
