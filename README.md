@@ -1,5 +1,6 @@
 hardcoded for 1600x900 at the moment
 link to game:[https://euril.github.io/blackjack/]
+[https://euril-blackjack.surge.sh/]
 
 resources:
 SVG generator
