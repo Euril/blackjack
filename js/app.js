@@ -9,7 +9,7 @@ dealCard.volume = .2
 let phase
 let winner
 let round
-let score = 500
+let score = 2000
 let playerHand = []
 let bet
 let outcome
@@ -67,6 +67,9 @@ playGame.addEventListener('click', evt => {
     // drawHands()
     betPhase()
   }
+  if(evt.target.id ==="phaseGame" && phase === "BROKE"){
+    takeLoan()
+  }
 })
 document.querySelector('.betList').addEventListener('click', evt =>{
   if(evt.target.id === 'bet100'){
@@ -113,12 +116,16 @@ function betPayout(bet){
   if(outcome === "T"){
     score = score + 0
   }
+
 }
 
 function init(){
   phase = "INIT"
   playGame.textContent = "Click Here to Start"
   scoreArea.textContent = `Score: ${score}p`
+  if(score <= 0){
+    brokePhase()
+  }
   if(blackjackDeck.length < 156){
     playGame.textContent = "Shuffling Deck"
     shuffleDeck()
@@ -217,7 +224,11 @@ function comparePhase(){
 
 function clearPhase(){
   phase = "CLEAR"
+  
   betPayout(bet)
+  if(score > 100000){
+    congrat()
+  }
   playerHand=[]
   p1Render()
   dealerHand=[]
@@ -227,7 +238,7 @@ function clearPhase(){
   player1TotalElem.textContent = `( ${playerTotal} )`
   dealerTotal = "-"
   dealerTotalElem.textContent = `( ${dealerTotal} )`
-  init()
+  setTimeout(init, 4000)
 }
 
 function handleHit(){
@@ -350,6 +361,21 @@ function shuffleDeck(){
   blackjackDeck = [...sixDeckOrig]
 }
 
+//function to celebrate achievement...
+function congrat(){
+    playGame.textContent="Broke the House, Congrats"
+    confetti.start(2000)
+}
+//how did it come to this 😭
+function brokePhase(){
+  phase="BROKE"
+  playGame.textContent="Click to take loan"
+}
+function takeLoan(){
+  score += 3000
+  playGame.textContent="3000p loan taken"
+  setTimeout(init, 3000)
+}
 //trashbin 
 
 
