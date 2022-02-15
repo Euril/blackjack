@@ -48,7 +48,7 @@ background-image: url(../images/table2.png);
   grid-area:3/6/4/11;
   /* border-style:dotted; */
   place-self: center;
-  
+  cursor:pointer;
 }
 #playerTotal{
   grid-area:PlayerTotal;

@@ -1,6 +1,9 @@
 /*-------------------------------- Constants --------------------------------*/
 const sixDeckOrig = ["dA","dQ","dK","dJ","d10","d09","d08","d07","d06","d05","d04","d03","d02","hA","hQ","hK","hJ","h10","h09","h08","h07","h06","h05","h04","h03","h02","cA","cQ","cK","cJ","c10","c09","c08","c07","c06","c05","c04","c03","c02","sA","sQ","sK","sJ","s10","s09","s08","s07","s06","s05","s04","s03","s02","dA","dQ","dK","dJ","d10","d09","d08","d07","d06","d05","d04","d03","d02","hA","hQ","hK","hJ","h10","h09","h08","h07","h06","h05","h04","h03","h02","cA","cQ","cK","cJ","c10","c09","c08","c07","c06","c05","c04","c03","c02","sA","sQ","sK","sJ","s10","s09","s08","s07","s06","s05","s04","s03","s02","dA","dQ","dK","dJ","d10","d09","d08","d07","d06","d05","d04","d03","d02","hA","hQ","hK","hJ","h10","h09","h08","h07","h06","h05","h04","h03","h02","cA","cQ","cK","cJ","c10","c09","c08","c07","c06","c05","c04","c03","c02","sA","sQ","sK","sJ","s10","s09","s08","s07","s06","s05","s04","s03","s02","dA","dQ","dK","dJ","d10","d09","d08","d07","d06","d05","d04","d03","d02","hA","hQ","hK","hJ","h10","h09","h08","h07","h06","h05","h04","h03","h02","cA","cQ","cK","cJ","c10","c09","c08","c07","c06","c05","c04","c03","c02","sA","sQ","sK","sJ","s10","s09","s08","s07","s06","s05","s04","s03","s02","dA","dQ","dK","dJ","d10","d09","d08","d07","d06","d05","d04","d03","d02","hA","hQ","hK","hJ","h10","h09","h08","h07","h06","h05","h04","h03","h02","cA","cQ","cK","cJ","c10","c09","c08","c07","c06","c05","c04","c03","c02","sA","sQ","sK","sJ","s10","s09","s08","s07","s06","s05","s04","s03","s02","dA","dQ","dK","dJ","d10","d09","d08","d07","d06","d05","d04","d03","d02","hA","hQ","hK","hJ","h10","h09","h08","h07","h06","h05","h04","h03","h02","cA","cQ","cK","cJ","c10","c09","c08","c07","c06","c05","c04","c03","c02","sA","sQ","sK","sJ","s10","s09","s08","s07","s06","s05","s04","s03","s02"]
 
+//audio constants
+const dealCard = new Audio("../audio/cardDeal.ogg")
+dealCard.volume = .2
 
 /*---------------------------- Variables (state) ----------------------------*/
 let phase
@@ -45,7 +48,7 @@ let player1TotalElem = document.getElementById('playerTotal')
 let dealerTotalElem = document.getElementById('dealerTotal')
 
 /*----------------------------- Event Listeners -----------------------------*/
-document.querySelector('.btn-group').addEventListener('click', evt =>{
+document.querySelector('.moveList').addEventListener('click', evt =>{
   if(evt.target.id === 'hit'){
     //console.log("did the hit")
     handleHit()
@@ -86,6 +89,7 @@ function init(){
 function drawCard(){
   let randIdx = Math.floor(Math.random()*blackjackDeck.length)
   cardPicked = blackjackDeck.splice(randIdx, 1)[0]
+  dealCard.play()
 }
 
 //function for first turn draw phase
@@ -129,7 +133,7 @@ function dealerPhase(){
     playGame.textContent = "Tie"
     setTimeout(clearPhase,2000)  
   }
-
+  
   if(dealerTotal < 17){
     setTimeout(dealerHit,1500) //recursion of the function to keep drawing until 17+ 
     setTimeout(dealerPhase,2000)
@@ -140,7 +144,7 @@ function dealerPhase(){
   if(dealerTotal === 'Bust'){
     score = score + 1000
     playGame.textContent = "You Win"
-    setTimeout(clearPhase,2000)  
+    setTimeout(clearPhase,3000)  
   }
 }
 
@@ -150,13 +154,13 @@ function comparePhase(){
   if(playerTotal === dealerTotal){
     playGame.textContent = "Push"
   }else if(playerTotal > dealerTotal){
-    playGame.textContent = "Win"
+    playGame.textContent = "You Win"
     score = score + 1000
   }else{
     playGame.textContent = "Dealer Wins"
     score = score - 1000
   }
-  setTimeout(clearPhase, 2000)
+  setTimeout(clearPhase, 3000)
 }
 
 function clearPhase(){
@@ -175,15 +179,10 @@ function clearPhase(){
   init()
 }
 
-// function clearHand(handArray){
-//   handArray.forEach((card, idx) =>{
-//     handArray.pop
-//   })
-// }
-
 function handleHit(){
   drawCard()
   playerHand.push(cardPicked)
+
   p1Render()
   cardValue(playerHand)
   //handTotal(playerHand)
@@ -191,15 +190,17 @@ function handleHit(){
   if(playerTotal === 21 && playerHand.length > 2){
     playGame.textContent = "21"
     document.querySelector(".moveList").style.visibility="hidden"
-    setTimeout(dealerPhase, 2000)
+    setTimeout(dealerPhase, 3000)
   }
   if(playerTotal === "Bust"){
     playGame.textContent = "You Busted"
     document.querySelector(".moveList").style.visibility="hidden"
     score = score - 1000 
-    setTimeout(clearPhase, 2000)
+    setTimeout(clearPhase, 3000)
   }
 }
+
+//function to make the 2nd drawn card for the dealer in the draw phase to show up as the back of the card instead of its front
 function dealerDrawPhase(){
   drawCard()
   dealerHand.push(cardPicked)
@@ -208,6 +209,7 @@ function dealerDrawPhase(){
   dealerHandElem.appendChild(newCard)
   console.log("Draw Hand " + dealerHand)
 }
+
 function dealerHit(){
   drawCard()
   dealerHand.push(cardPicked)
