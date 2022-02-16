@@ -111,7 +111,6 @@ background: linear-gradient(19deg, rgba(134,0,0,1) 0%, rgba(205,24,61,1) 68%, rg
   border-style: solid;
   border-color:white;
   
-  
   border-radius:30%;
   color: white; 
   margin: 10px 0 0 0;
@@ -119,7 +118,6 @@ background: linear-gradient(19deg, rgba(134,0,0,1) 0%, rgba(205,24,61,1) 68%, rg
   
   width:100%;
   display:block;
-  
 }
 
 .playerMove{
@@ -226,4 +224,8 @@ background: linear-gradient(0deg, rgba(195,34,34,1) 0%, rgba(253,187,45,1) 100%)
 }
 .cardSlideDown{
   animation:slideInDown;
+}
+
+.chip{
+  width:15%;
 }

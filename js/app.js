@@ -79,13 +79,24 @@ playGame.addEventListener('click', evt => {
 document.querySelector('.betList').addEventListener('click', evt =>{
   if(evt.target.id === 'bet100'){
     handleBet(100)
+    let newChip = document.createElement('img')
+    newChip.setAttribute("class", 'chip')
+    newChip.src = "../images/100Chip.png"
+    betArea.appendChild(newChip)
   }
   if(evt.target.id === 'bet500'){
     handleBet(500)
-    
+    let newChip = document.createElement('img')
+    newChip.setAttribute("class", 'chip')
+    newChip.src = "../images/500Chip.png"
+    betArea.appendChild(newChip)
   }
   if(evt.target.id === 'bet1000'){
     handleBet(1000)
+    let newChip = document.createElement('img')
+    newChip.setAttribute("class", 'chip')
+    newChip.src = "../images/1000Chip.png"
+    betArea.appendChild(newChip)
   }
 })
 
@@ -177,6 +188,7 @@ function blackjackPhase(){
 
 function dealerPhase(){
   phase = "DEALER"
+  playGame.removeAttribute('class')
   playGame.textContent = "Dealer Phase"
   dRender()
   cardValue(dealerHand)
@@ -247,6 +259,7 @@ function handleHit(){
   //handTotal(playerHand)
   p1TotalRender()
   if(playerTotal === 21 && playerHand.length > 2){
+    playGame.classList.add('red-gradient-text')
     playGame.textContent = "21"
     document.querySelector(".moveList").style.visibility="hidden"
     setTimeout(dealerPhase, 3000)
@@ -339,11 +352,9 @@ function double(){
 //3. The player first plays the hand to their left by standing or hitting one or more times; only then is the hand to the right played. The two hands are thus treated separately, and the dealer settles with each on its own merits. 
 //4. With a pair of aces, the player is given one card for each ace and may not draw again. Also, if a ten-card is dealt to one of these aces, the payoff is equal to the bet (not one and one-half to one, as with a blackjack at any other time).
 function splitPairs(){
-  
+  let holder = playerHand.pop
+  playerSplitHand.push(holder)
 }
-
-
-
 
 function handleBet(num){
   bet = num
@@ -353,6 +364,7 @@ function handleBet(num){
     setTimeout(init, 2000)
   }else{
     betArea.textContent=`Bet: ${bet}p`
+    
     document.querySelector(".betList").style.visibility="hidden"
     setTimeout(drawHands, 1000)
     }
