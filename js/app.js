@@ -55,6 +55,9 @@ document.querySelector('.moveList').addEventListener('click', evt =>{
   if(evt.target.id === 'hit'){
     handleHit()
   }
+  if(evt.target.id === 'double'){
+    double()
+  }
   if(evt.target.id === 'stand'){
     console.log('did the stand')
     document.querySelector(".moveList").style.visibility="hidden"
@@ -131,12 +134,17 @@ function drawHands(){
   setTimeout(playerPhase, 6000)
 }
 
+//have I been using the css for hidden wrong?
 function playerPhase(){
   phase= "PLAYER1"
   playGame.textContent = "Player Phase"
   document.querySelector(".moveList").style.visibility="visible"
+  if((playerTotal === 11 || playerTotal === 10 || playerTotal === 9) && playerHand.length === 2){
+    document.querySelector("#double").style.visibility="visible"
+  } 
   
   if(playerTotal === 21 && playerHand.length === 2){
+    playGame.classList.add('gold-gradient-text')
     playGame.textContent = "BLACKJACK"
     outcome = "BJ"
     document.querySelector(".moveList").style.visibility="hidden"
@@ -154,6 +162,7 @@ function blackjackPhase(){
   dTotalRender()
   
   if(dealerTotal === 21){
+    playGame.removeAttribute('class')
     playGame.textContent = "Tie"
     outcome = "T"
     setTimeout(clearPhase,2000)  
@@ -197,6 +206,7 @@ function comparePhase(){
     playGame.textContent = "You Win"
     // score = score + 1000
     outcome = "W"
+
   }else{
     playGame.textContent = "Dealer Wins"
     // score = score - 1000
@@ -207,7 +217,9 @@ function comparePhase(){
 
 function clearPhase(){
   phase = "CLEAR"
-  
+  playGame.setAttribute
+  playGame.removeAttribute('class')
+  playGame.textContent="Clearing Board"
   betPayout(bet)
   
   playerHand=[]
@@ -242,6 +254,7 @@ function handleHit(){
     document.querySelector(".moveList").style.visibility="hidden"
     // score = score - 1000 
     outcome = "L"
+
     setTimeout(clearPhase, 3000)
   }
 }
@@ -309,6 +322,25 @@ function cardValue(handArray){
 //       totalHolder += 1
 //     }
 // }
+
+//Another option open to the player is doubling their bet when the original two cards dealt total 9, 10, or 11. When the player's turn comes, they place a bet equal to the original bet, and the dealer gives the player just one card, which is placed face down and is not turned up until the bets are settled at the end of the hand. With two fives, the player may split a pair, double down, or just play the hand in the regular way. Note that the dealer does not have the option of splitting or doubling down.
+function double(){
+  bet = bet * 2
+  betArea.textContent=`Bet: ${bet}p`
+  handleHit()
+  document.querySelector(".moveList").style.visibility="hidden"
+  document.querySelector("#double").style.visibility="hidden"
+  setTimeout(dealerPhase, 3000)
+}
+
+// If a player's first two cards are of the same denomination, such as two jacks or two sixes, they may choose to treat them as two separate hands when their turn comes around. The amount of the original bet then goes on one of the cards, and an equal amount must be placed as a bet on the other card. The player first plays the hand to their left by standing or hitting one or more times; only then is the hand to the right played. The two hands are thus treated separately, and the dealer settles with each on its own merits. With a pair of aces, the player is given one card for each ace and may not draw again. Also, if a ten-card is dealt to one of these aces, the payoff is equal to the bet (not one and one-half to one, as with a blackjack at any other time).
+function splitPairs(){
+
+}
+
+
+
+
 function handleBet(num){
   bet = num
   if((score - bet) < 0){
@@ -382,6 +414,18 @@ function renderCard(cardPicked, idx, location){
 function shuffleDeck(){
   console.log("Shuffled deck")
   blackjackDeck = [...sixDeckOrig]
+}
+
+function messageColor(){
+  if(outcome = "W"){
+    playGame.classList.add("red-gradient-text")
+  }else if(outcome = "L"){
+    playGame.classList.add("redText")
+  }else if(outcome = "BJ"){
+    playGame.classList.add("gold-gradient-text")
+  }else if(outcome = "T"){
+    playGame.removeAttribute('class')
+  }
 }
 
 //function to celebrate achievement...

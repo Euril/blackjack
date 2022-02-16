@@ -141,6 +141,11 @@ background-image: url(../images/table2.png);
   
 }
 
+#double{
+  visibility: hidden;
+}
+
+
 .betMove{
   grid-area:betMove;
   grid-area:4/5/8/7;
@@ -189,6 +194,16 @@ background: linear-gradient(350deg, rgba(162,134,44,1) 30%, rgba(212,175,55,1) 6
   /* background-clip:text; */
   -webkit-text-fill-color:transparent;
   -moz-text-fill-color:transparent;
+}
+.red-gradient-text{
+background: linear-gradient(0deg, rgba(195,34,34,1) 0%, rgba(253,187,45,1) 100%);
+  background: size 100%;
+  -webkit-background-clip:text;
+  -moz-background-clip:text;
+  /* background-clip:text; */
+  -webkit-text-fill-color:transparent;
+  -moz-text-fill-color:transparent;
+
 }
 
 .redText{
