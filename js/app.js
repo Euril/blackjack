@@ -11,11 +11,13 @@ let winner
 let round
 let score = 2000
 let playerHand = []
+
 let bet
 let outcome = ""
 
 let dealerHand = []
 
+let playerSplitHand = []
 //seperated remove for removing card renders from specific array
 let p1CardToRemove
 let dCardToRemove
@@ -100,7 +102,7 @@ function init(){
   if(score > 100000){
     congrat()
   }
-  if(score <= 0){
+  if(score < 100){
     brokePhase()
   }
   if(blackjackDeck.length < 156){
@@ -323,7 +325,6 @@ function cardValue(handArray){
 //     }
 // }
 
-//Another option open to the player is doubling their bet when the original two cards dealt total 9, 10, or 11. When the player's turn comes, they place a bet equal to the original bet, and the dealer gives the player just one card, which is placed face down and is not turned up until the bets are settled at the end of the hand. With two fives, the player may split a pair, double down, or just play the hand in the regular way. Note that the dealer does not have the option of splitting or doubling down.
 function double(){
   bet = bet * 2
   betArea.textContent=`Bet: ${bet}p`
@@ -333,9 +334,12 @@ function double(){
   setTimeout(dealerPhase, 3000)
 }
 
-// If a player's first two cards are of the same denomination, such as two jacks or two sixes, they may choose to treat them as two separate hands when their turn comes around. The amount of the original bet then goes on one of the cards, and an equal amount must be placed as a bet on the other card. The player first plays the hand to their left by standing or hitting one or more times; only then is the hand to the right played. The two hands are thus treated separately, and the dealer settles with each on its own merits. With a pair of aces, the player is given one card for each ace and may not draw again. Also, if a ten-card is dealt to one of these aces, the payoff is equal to the bet (not one and one-half to one, as with a blackjack at any other time).
+//1. If a player's first two cards are of the same denomination, such as two jacks or two sixes, they may choose to treat them as two separate hands when their turn comes around. 
+//2. The amount of the original bet then goes on one of the cards, and an equal amount must be placed as a bet on the other card.
+//3. The player first plays the hand to their left by standing or hitting one or more times; only then is the hand to the right played. The two hands are thus treated separately, and the dealer settles with each on its own merits. 
+//4. With a pair of aces, the player is given one card for each ace and may not draw again. Also, if a ten-card is dealt to one of these aces, the payoff is equal to the bet (not one and one-half to one, as with a blackjack at any other time).
 function splitPairs(){
-
+  
 }
 
 

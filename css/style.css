@@ -55,7 +55,6 @@ background-image: url(../images/table2.png);
   grid-area:4/7/5/10;
   place-self: center;
   margin: 0 0;
-  
 }
 
 #playerArea{
@@ -77,9 +76,11 @@ background-image: url(../images/table2.png);
 #betting{
   grid-area:betting;
   grid-area:6/7/7/10;
-  background-color:black;
+  /* background-color:black; */
   border:5px;
-  border-style:solid;
+  border-style:none solid none solid;
+  border-radius:50%;
+  align-items: center;
 }
 
 #playerHand{
@@ -103,8 +104,11 @@ background-image: url(../images/table2.png);
 }
 
 .btn-group button {
-  background-color: black; 
-  border-style: none none solid none;
+  /* background-color: black;  */
+  background: rgb(134,0,0);
+background: linear-gradient(19deg, rgba(134,0,0,1) 0%, rgba(205,24,61,1) 68%, rgba(255,59,99,1) 100%);
+  /* border-style: none none solid none; */
+  border-style: solid;
   border-color:white;
   
   
@@ -176,6 +180,7 @@ background-image: url(../images/table2.png);
 background: linear-gradient(350deg, rgba(162,134,44,1) 30%, rgba(212,175,55,1) 60%, rgba(255,255,255,1) 100%);
   font-weight:bolder;
   color:black;
+  border-color:#a2862c;
 
 }
 .betList button:hover {
@@ -183,12 +188,14 @@ background: linear-gradient(350deg, rgba(162,134,44,1) 30%, rgba(212,175,55,1) 6
 background: linear-gradient(350deg, rgba(162,134,44,1) 30%, rgba(212,175,55,1) 60%, rgba(255,255,255,1) 100%);
   font-weight:bolder;
   color:black;
+  border-color:#a2862c;
 
 }
 
 .gold-gradient-text{
   background-image: linear-gradient(350deg, rgba(162,134,44,1) 30%, rgba(212,175,55,1) 40%, rgba(255,255,255,1) 100%);
   background: size 100%;
+  background-clip:text;
   -webkit-background-clip:text;
   -moz-background-clip:text;
   /* background-clip:text; */
@@ -198,6 +205,7 @@ background: linear-gradient(350deg, rgba(162,134,44,1) 30%, rgba(212,175,55,1) 6
 .red-gradient-text{
 background: linear-gradient(0deg, rgba(195,34,34,1) 0%, rgba(253,187,45,1) 100%);
   background: size 100%;
+  background-clip:text;
   -webkit-background-clip:text;
   -moz-background-clip:text;
   /* background-clip:text; */
