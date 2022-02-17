@@ -73,14 +73,22 @@ background-image: url(../images/table2.png);
   padding:10px 20px;
   background-color:black;
 }
-#betting{
+.betArea{
   grid-area:betting;
   grid-area:6/7/7/10;
-  /* background-color:black; */
   border:5px;
   border-style:none solid none solid;
   border-radius:50%;
+}
+#betting{
+  display:grid;
+  height:78px;
+  grid-template-columns: 33% 33% 33%;
+  grid-template-rows: 100%;
+  /* background-color:black; */
+  font-size:20px;
   align-items: center;
+  justify-items: center;
 }
 
 #playerHand{
@@ -169,12 +177,6 @@ background: linear-gradient(19deg, rgba(134,0,0,1) 0%, rgba(205,24,61,1) 68%, rg
   grid-template-rows:90px 90px 90px;
 }
 
-
-
-/*prevents double borders*/
-/* .btn-group button:not(:last-child) {
-  border-bottom: none;
-} */
 .moveList button:hover {
   background: #a2862c;
 background: linear-gradient(350deg, rgba(162,134,44,1) 30%, rgba(212,175,55,1) 60%, rgba(255,255,255,1) 100%);
@@ -229,5 +231,5 @@ background: linear-gradient(0deg, rgba(195,34,34,1) 0%, rgba(253,187,45,1) 100%)
 }
 
 .chip{
-  width:15%;
+  width:50%;
 }

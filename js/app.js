@@ -10,6 +10,7 @@ const clap = new Audio("../audio/clap.wav")
 clap.volume = .2
 const tada = new Audio("../audio/tadaG.flac")
 tada.volume = .2
+//ask ta for audio help
 const chip = new Audio("../audio/casinoChip.wav #t=0.5, 1.5")
 chip.volume = .2
 
@@ -116,7 +117,7 @@ function init(){
   
   if(score > goal){
     congrat()
-    tada.play()
+    
   }
   if(score < 100){
     brokePhase()
@@ -309,7 +310,6 @@ function cardValue(handArray){
     if(valueHolder === 'Q' || valueHolder === 'K' || valueHolder === 'J'){
       totalHolder += 10
     }
-    //I gave up on figuring out Ace logic had to search on stackoverflow for hints found amazing pseudocode and now I feel dum for not figuring it out myself... kept adding 11 then minusing when I should have done it the other way add 1 and if under 12 add 10...
     if(valueHolder === 'A'){
       totalHolder+= 1
       isThereAnAce = true
@@ -359,12 +359,14 @@ function handleBet(num){
 function betPayout(bet){
   if(outcome === "W"){
     score = score + bet
+    clap.play()
   }
   if(outcome === "L"){
     score = score - bet
   }
   if(outcome === "BJ"){
     score = score + (bet * 1.5)
+    clap.play()
   }
   if(outcome === "T"){
     score = score + 0
@@ -405,11 +407,9 @@ function dRender(){
 
 function renderCard(cardPicked, idx, location){
   let newCard = document.createElement("div")
-  //newCard.classList.add("card", "large", `${cardPicked}`)
   newCard.setAttribute("class", `card ${cardPicked}`)
   //works as I thought it would it animates the entire hand LOL 
   //newCard.classList.add("animate__animated", "animate__slideInDown")
-  //newCard.innerHTML = ""
   location.appendChild(newCard)
 }
 
@@ -433,6 +433,7 @@ function messageColor(){
 //function to celebrate achievement...
 function congrat(){
     playGame.textContent="Broke the House, Congrats"
+    tada.play()
     confetti.start(2000)
 }
 //how did it come to this 😭
@@ -445,122 +446,3 @@ function takeLoan(){
   playGame.textContent="3000p loan taken"
   setTimeout(init, 3000)
 }
-//trashbin 
-
-
-
-  /*
-  //function to check handArrays like dealer or player to calculate card values
-function cardValue(handArray){
-  valueHolder = 0
-  totalHolder = 0 //had to take 2 variables for this for now because valueHolder ends up holding strings... not sure what to do
-  handArray.forEach(function(card){
-    valueHolder = card.slice(1)
-    console.log(handArray)
-    if(isNaN(parseInt(valueHolder)) === true){
-      //if(totalHolder > 21 )
-      if(valueHolder === 'Q' || valueHolder === 'K' || valueHolder === 'J'){
-        totalHolder += 10
-      }
-      if(valueHolder ==='A' && totalHolder > 21){
-        totalHolder += 1
-      }
-      if(valueHolder ==='A' && totalHolder < 21){
-        totalHolder +=11
-      }
-    }
-    else{
-      totalHolder += (parseInt(valueHolder))
-    }
-  })
-}*/
-
-// function p1Render(cardPicked){
-//   // Remove outline class when first card is picked
-//   if (playerHand.length === 1) {  
-//     playerHandElem.classList.remove("outline")
-//   }
-//    // Removes previous picked card
-//     if(playerHand.length > 1){
-//       playerHandElem.classList.remove(p1CardToRemove)
-//     }
-//   p1CardToRemove=cardPicked
-//   playerHandElem.classList.add(cardPicked)
-//   playerTotal = totalHolder
-//   player1TotalElem.textContent = `( ${playerTotal} )` //player total render
-
-//   //console.log(`Player: ${playerHand}`)
-//   //console.log(playerTotal)
-// }
-
-/*
-//function to add card value
-function cardValue(card){
-  valueHolder = card.slice(1)
-  //console.log(valueHolder)
-  if(isNaN(parseInt(valueHolder)) === false){
-    valueHolder = (parseInt(valueHolder))
-    }
-  if(valueHolder === 'Q' || valueHolder === 'K' || valueHolder === 'J'){
-    valueHolder = 10
-  }
-  
-}
-
-//function to add up hand to display total, and deal with A 11 or 1 situtation, and check during player and dealer phase if they got over 21
-function handTotal(handArray){
-  totalHolder = 0
-  handArray.forEach(function(card){
-    
-    if(card === 'A' && totalHolder < 11){
-      totalHolder += 11
-      if(totalHolder >21){
-        totalHolder = totalHolder - 10
-      }
-    }else if(card === 'A' && totalHolder >= 11){
-      totalHolder += 1
-    }else {
-    totalHolder += card
-    }
-    //console.log(totalHolder)
-  })
-  if(totalHolder > 21){
-    totalHolder = 'Bust'
-  }
-} */
-
-// function dealerHit(){
-//   drawCard()
-//   cardValue(cardPicked)
-//   dealerHand.push(valueHolder)
-  
-//   handTotal(dealerHand)
-//   dRender(cardPicked)
-// }
-
-/*
-function dRender(cardPicked){
-  // Remove outline class when first card is picked
-  if (dealerHand.length === 1) {  
-    dealerHandElem.classList.remove("outline")
-  }
-   // Removes previous picked card
-    if(dealerHand.length > 1){
-      dealerHandElem.classList.remove(dCardToRemove)
-    }
-  dCardToRemove=cardPicked
-  dealerHandElem.classList.add(cardPicked)
-  dealerTotal = totalHolder
-  dealerTotalElem.textContent = `( ${dealerTotal} )` //dealer total render
-  
-  //console.log(`Dealer: ${dealerHand}`)
-  //console.log(dealerTotal)
-}*/
-
-//inside player phase
-// if(playerTotal === "Bust"){
-  //   playGame.textContent = "You Busted"
-  //   document.querySelector(".playerMove").style.visibility="hidden"
-  //   score = score - 1000 
-  //   setTimeout(clearPhase, 2000)
-  // }

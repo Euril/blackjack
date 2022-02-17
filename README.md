@@ -1,5 +1,5 @@
 # Blackjack Card Game ♠️♦️♥️♣️
-![picture of starting screen of my game](../blackjack/images/blackjackRM.png)
+![picture of starting screen of my game](./images/blackjackRM.png)
 # Play the Game
 Hardcoded for 1600x900 at the moment:
 - [https://euril.github.io/blackjack/]
@@ -57,8 +57,8 @@ Confentti courtesy of ManliestBen
 - [ ] Split / Surrender / and even maybe Insurance
 
 # Designing
-![picture of my wireframe](../blackjack/images/wireframe.png)
+![picture of my wireframe](./images/wireframe.png)
 Original wireframe, definetely thought simple.
 [https://trello.com/b/L9ryi2dz/euril-blackjack]
-![Ver 1.0 of game](../blackjack/images/blackjackRM.png)
+![Ver 1.0 of game](./images/blackjackRM.png)
 Hope you liked my version of blackjack, I enjoyed thinking out how to translate playing the game into javascript code. I went out of my way to mimic a blackjack table, I made the background using the gradient tool then bringing that into a clone of my code to make things show up where I wanted them to. I really like how the curved text/lines turned out. My inspiration came from games I've played blackjack in as I've never actually played Blackjack in a casino before. Shoutout to the *Yakuza* series and *Fallout: New Vegas*.
