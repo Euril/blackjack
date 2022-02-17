@@ -4,6 +4,14 @@ const sixDeckOrig = ["dA","dQ","dK","dJ","d10","d09","d08","d07","d06","d05","d0
 //audio constants
 const dealCard = new Audio("../audio/cardDeal.ogg")
 dealCard.volume = .2
+const cardSlide = new Audio("../audio/cardSlide.wav")
+cardSlide.volume = .2
+const clap = new Audio("../audio/clap.wav")
+clap.volume = .2
+const tada = new Audio("../audio/tadaG.flac")
+tada.volume = .2
+const chip = new Audio("../audio/casinoChip.wav #t=0.5, 1.5")
+chip.volume = .2
 
 /*---------------------------- Variables (state) ----------------------------*/
 let phase
@@ -11,7 +19,7 @@ let score = 2000
 let goal = 30000
 let playerHand = []
 let bet
-let outcome = ""  //⬅️ who is winner of compare
+let outcome = ""  //⬅️ who is winner of compares
 
 let dealerHand = []
 
@@ -72,6 +80,7 @@ playGame.addEventListener('click', evt => {
 document.querySelector('.betList').addEventListener('click', evt =>{
   if(evt.target.id === 'bet100'){
     handleBet(100)
+    chip.play()
     let newChip = document.createElement('img')
     newChip.setAttribute("class", 'chip')
     newChip.src = "../images/100Chip.png"
@@ -79,6 +88,7 @@ document.querySelector('.betList').addEventListener('click', evt =>{
   }
   if(evt.target.id === 'bet500'){
     handleBet(500)
+    chip.play()
     let newChip = document.createElement('img')
     newChip.setAttribute("class", 'chip')
     newChip.src = "../images/500Chip.png"
@@ -86,6 +96,7 @@ document.querySelector('.betList').addEventListener('click', evt =>{
   }
   if(evt.target.id === 'bet1000'){
     handleBet(1000)
+    chip.play()
     let newChip = document.createElement('img')
     newChip.setAttribute("class", 'chip')
     newChip.src = "../images/1000Chip.png"
@@ -105,6 +116,7 @@ function init(){
   
   if(score > goal){
     congrat()
+    tada.play()
   }
   if(score < 100){
     brokePhase()
@@ -225,9 +237,10 @@ function clearPhase(){
   playGame.removeAttribute('class')
   playGame.textContent="Clearing Board"
   betPayout(bet)
-  
+  cardSlide.play()
   playerHand=[]
   p1Render()
+  cardSlide.play()
   dealerHand=[]
   dRender()
   betArea.textContent=""
