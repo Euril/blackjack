@@ -146,7 +146,9 @@ background: linear-gradient(19deg, rgba(134,0,0,1) 0%, rgba(205,24,61,1) 68%, rg
 #double{
   visibility: hidden;
 }
-
+#split{
+  visibility: hidden;
+}
 
 .betMove{
   grid-area:betMove;

@@ -7,21 +7,17 @@ dealCard.volume = .2
 
 /*---------------------------- Variables (state) ----------------------------*/
 let phase
-let winner
-let round
 let score = 2000
+let goal = 30000
 let playerHand = []
-
 let bet
-let outcome = ""
+let outcome = ""  //⬅️ who is winner of compare
 
 let dealerHand = []
 
 let playerSplitHand = []
-//seperated remove for removing card renders from specific array
-let p1CardToRemove
-let dCardToRemove
-//let cardPicked
+
+
 
 let discardDeck = []
 
@@ -41,7 +37,6 @@ let tempArray = []
 
 /*------------------------ Cached Element References ------------------------*/
 let playerMenu = document.getElementById('btn-group')
-//let playGame = document.getElementById('messageArea')
 let playGame = document.getElementById('phaseGame')
 let scoreArea = document.getElementById('scoreboard')
 let betArea = document.getElementById('betting')
@@ -61,15 +56,13 @@ document.querySelector('.moveList').addEventListener('click', evt =>{
     double()
   }
   if(evt.target.id === 'stand'){
-    console.log('did the stand')
     document.querySelector(".moveList").style.visibility="hidden"
+    document.querySelector("#double").style.visibility="hidden"
     setTimeout(dealerPhase, 2000)
   }
 })
 playGame.addEventListener('click', evt => {
   if(evt.target.id ==="phaseGame" && phase === "INIT"){
-    console.log('start a phase')
-    // drawHands()
     betPhase()
   }
   if(evt.target.id ==="phaseGame" && phase === "BROKE"){
@@ -110,7 +103,7 @@ function init(){
   playGame.textContent = "Click Here to Start"
   scoreArea.textContent = `Score: ${score}p`
   
-  if(score > 100000){
+  if(score > goal){
     congrat()
   }
   if(score < 100){
@@ -143,11 +136,11 @@ function drawHands(){
   setTimeout(dealerHit, 1000)
   setTimeout(handleHit, 2500)
   setTimeout(dealerDrawPhase,4000)
-  //setTimeout(dealerHit, 4000)
+  
   setTimeout(playerPhase, 6000)
 }
 
-//have I been using the css for hidden wrong?
+
 function playerPhase(){
   phase= "PLAYER1"
   playGame.textContent = "Player Phase"
@@ -181,7 +174,6 @@ function blackjackPhase(){
     setTimeout(clearPhase,2000)  
   }else{
     playGame.textContent = "BLACKJACK"
-    //outcome = "BJ" //outcome would still be BJ I think
     setTimeout(clearPhase,2000)
   }
 }
@@ -189,6 +181,7 @@ function blackjackPhase(){
 function dealerPhase(){
   phase = "DEALER"
   playGame.removeAttribute('class')
+  
   playGame.textContent = "Dealer Phase"
   dRender()
   cardValue(dealerHand)
@@ -203,7 +196,6 @@ function dealerPhase(){
     setTimeout(comparePhase,2000)
   }
   if(dealerTotal === 'Bust'){
-    // score = score + 1000
     outcome = "W"
     playGame.textContent = "You Win"
     setTimeout(clearPhase,3000)  
@@ -218,12 +210,10 @@ function comparePhase(){
     outcome = "T"
   }else if(playerTotal > dealerTotal){
     playGame.textContent = "You Win"
-    // score = score + 1000
     outcome = "W"
 
   }else{
     playGame.textContent = "Dealer Wins"
-    // score = score - 1000
     outcome = "L"
   }
   setTimeout(clearPhase, 3000)
@@ -255,7 +245,7 @@ function handleHit(){
   playerHand.push(cardPicked)
   p1Render()
   cardValue(playerHand)
-
+  document.querySelector("#double").style.visibility="hidden"
   //handTotal(playerHand)
   p1TotalRender()
   if(playerTotal === 21 && playerHand.length > 2){
@@ -281,7 +271,6 @@ function dealerDrawPhase(){
   let newCard = document.createElement("div")
   newCard.setAttribute("class", `card back-blue`)
   dealerHandElem.appendChild(newCard)
-  console.log("Draw Hand " + dealerHand)
 }
 
 function dealerHit(){
@@ -289,9 +278,7 @@ function dealerHit(){
   dealerHand.push(cardPicked)
   dRender()
   cardValue(dealerHand)
-  //handTotal(dealerHand)
   dTotalRender()
-  console.log(dealerHand)
 }
 
 //function to add card value
@@ -323,20 +310,6 @@ function cardValue(handArray){
   }
   
 }
-
-//function to deal with Ace 11 or 1 situtation
-//🔥🔥⚠️ ace card value is still broken when ace is the first card drawn
-// function aceCardValue(){
-
-//     if(valueHolder === 'A' && totalHolder < 11){
-//       totalHolder += 11
-//       if(totalHolder >21){
-//         totalHolder = totalHolder - 10
-//       }
-//     }else if(valueHolder === 'A' && totalHolder >= 11){
-//       totalHolder += 1
-//     }
-// }
 
 function double(){
   bet = bet * 2
