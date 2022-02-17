@@ -47,8 +47,9 @@ MichaelNo audio from The Office
 Confentti courtesy of ManliestBen
 [https://github.com/SEI-Remote/confetti]<br>
 
-# Ice Box Stretch Implementations
+# Ice Box / Stretch Goals
 - [ ] More audio implementation 
+- [ ] Card Animation
 - [ ] Dealer portrait that updates depending on what is going on
 - [ ] Show the deck and discard deck for continuity sake
 - [ ] Mobile accessibility
@@ -63,4 +64,5 @@ Confentti courtesy of ManliestBen
 Original wireframe, definetely thought simple.
 [https://trello.com/b/L9ryi2dz/euril-blackjack]
 ![Ver 1.0 of game](./images/blackjackRM.png)
+![Ver 1.0 of game in play](./images/blackjackRM2.png)
 Hope you liked my version of blackjack, I enjoyed thinking out how to translate playing the game into javascript code. I went out of my way to mimic a blackjack table, I made the background using the gradient tool then bringing that into a clone of my code to make things show up where I wanted them to. I really like how the curved text/lines turned out. My inspiration came from games I've played blackjack in as I've never actually played Blackjack in a casino before. Shoutout to the *Yakuza* series and *Fallout: New Vegas*.
