@@ -1,4 +1,4 @@
-# Blackjack Card Game ♠️♦️♥️♣️
+# Blackjack Card Game ♦️♣️♥️♠️
 ![picture of starting screen of my game](./images/blackjackRM.png)
 # Play the Game
 Hardcoded for 1600x900 at the moment:
@@ -19,8 +19,7 @@ My Blackjack game uses 6 decks for a total of 312 cards, once below 50% the deck
 
 # Technologies Used 
 <img src="https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E"/>
-<img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white
-"/>
+<img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white"/>
 <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white"/>
 <img src="https://img.shields.io/badge/GIT-E44C30?style=for-the-badge&logo=git&logoColor=white"/>
 
@@ -43,6 +42,8 @@ Tada fanfare G
 [https://freesound.org/people/plasterbrain/sounds/397353/]<br>
 Casino chip audio
 [https://freesound.org/people/Piggimon/sounds/366217/]<br>
+MichaelNo audio from The Office 
+[https://www.voicy.network/clips/NVurDahoEeihTtSuUqiQGg]<br>
 Confentti courtesy of ManliestBen
 [https://github.com/SEI-Remote/confetti]<br>
 
@@ -52,6 +53,7 @@ Confentti courtesy of ManliestBen
 - [ ] Show the deck and discard deck for continuity sake
 - [ ] Mobile accessibility
 - [ ] More players or basic AI players to add more authenticity
+- [x] Betting
 - [X] Chip Image for bets
 - [x] Double
 - [ ] Split / Surrender / and even maybe Insurance

@@ -10,9 +10,12 @@ const clap = new Audio("../audio/clap.wav")
 clap.volume = .2
 const tada = new Audio("../audio/tadaG.flac")
 tada.volume = .2
+const no = new Audio("../audio/MichaelNo.mp3")
+no.volume = .1
 //ask ta for audio help
 const chip = new Audio("../audio/casinoChip.wav #t=0.5, 1.5")
 chip.volume = .2
+
 
 /*---------------------------- Variables (state) ----------------------------*/
 let phase
@@ -81,27 +84,18 @@ playGame.addEventListener('click', evt => {
 document.querySelector('.betList').addEventListener('click', evt =>{
   if(evt.target.id === 'bet100'){
     handleBet(100)
-    chip.play()
-    let newChip = document.createElement('img')
-    newChip.setAttribute("class", 'chip')
-    newChip.src = "../images/100Chip.png"
-    betArea.appendChild(newChip)
+  
+    
   }
   if(evt.target.id === 'bet500'){
     handleBet(500)
-    chip.play()
-    let newChip = document.createElement('img')
-    newChip.setAttribute("class", 'chip')
-    newChip.src = "../images/500Chip.png"
-    betArea.appendChild(newChip)
+    
+    
   }
   if(evt.target.id === 'bet1000'){
     handleBet(1000)
-    chip.play()
-    let newChip = document.createElement('img')
-    newChip.setAttribute("class", 'chip')
-    newChip.src = "../images/1000Chip.png"
-    betArea.appendChild(newChip)
+    
+    
   }
 })
 
@@ -226,6 +220,7 @@ function comparePhase(){
     outcome = "W"
 
   }else{
+    playGame.classList.add('redText')
     playGame.textContent = "Dealer Wins"
     outcome = "L"
   }
@@ -250,6 +245,7 @@ function clearPhase(){
   player1TotalElem.removeAttribute("class") //removes color text
   dealerTotal = "-"
   dealerTotalElem.textContent = `( ${dealerTotal} )`
+  dealerTotalElem.removeAttribute("class") //removes color text
   outcome = ""
   setTimeout(init, 2000)
 }
@@ -269,6 +265,7 @@ function handleHit(){
     setTimeout(dealerPhase, 3000)
   }
   if(playerTotal === "Bust"){
+    playGame.classList.add('redText')
     playGame.textContent = "You Busted"
     document.querySelector(".moveList").style.visibility="hidden"
     // score = score - 1000 
@@ -327,6 +324,7 @@ function cardValue(handArray){
 function double(){
   bet = bet * 2
   betArea.textContent=`Bet: ${bet}p`
+  renderChipDouble()
   handleHit()
   document.querySelector(".moveList").style.visibility="hidden"
   document.querySelector("#double").style.visibility="hidden"
@@ -350,11 +348,48 @@ function handleBet(num){
     setTimeout(init, 2000)
   }else{
     betArea.textContent=`Bet: ${bet}p`
-    
+    renderChip()
     document.querySelector(".betList").style.visibility="hidden"
     setTimeout(drawHands, 1000)
     }
   }
+function renderChip(){
+  let newChip = document.createElement('img')
+    newChip.setAttribute("class", 'chip')
+    if(bet === 100){
+      newChip.src = "../images/100Chip.png"
+    }else if(bet === 500){
+      newChip.src = "../images/500Chip.png"
+    }else if(bet === 1000){
+      newChip.src = "../images/1000Chip.png"
+    }
+    betArea.appendChild(newChip)
+    chip.play()
+}
+function renderChipDouble(){
+  let newChip = document.createElement('img')
+    newChip.setAttribute("class", 'chip')
+    if((bet/2) === 100){
+      newChip.src = "../images/100Chip.png"
+    }else if(bet/2 === 500){
+      newChip.src = "../images/500Chip.png"
+    }else if(bet/2 === 1000){
+      newChip.src = "../images/1000Chip.png"
+    }
+  let newChip2 = document.createElement('img')
+    newChip2.setAttribute("class", 'chip')
+    if((bet/2) === 100){
+      newChip2.src = "../images/100Chip.png"
+    }else if(bet/2 === 500){
+      newChip2.src = "../images/500Chip.png"
+    }else if(bet/2 === 1000){
+      newChip2.src = "../images/1000Chip.png"
+    }
+    betArea.appendChild(newChip)
+    betArea.appendChild(newChip2)
+    chip.play()
+    chip.play()
+}
 
 function betPayout(bet){
   if(outcome === "W"){
@@ -389,6 +424,10 @@ function p1TotalRender(){
 }
 function dTotalRender(){
   dealerTotal = totalHolder
+  dealerTotalElem.removeAttribute("class") //removes color text
+  if(playerTotal === "Bust"){
+    player1TotalElem.classList.add("redText")
+  }
   dealerTotalElem.textContent = `( ${dealerTotal} )`
 }
 
@@ -440,6 +479,7 @@ function congrat(){
 function brokePhase(){
   phase="BROKE"
   playGame.textContent="Click to take loan"
+  no.play()
 }
 function takeLoan(){
   score += 3000
