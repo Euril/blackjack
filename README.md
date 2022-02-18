@@ -9,10 +9,10 @@ My game is a somewhat faithful representation of Blackjack. The goal of the game
 The player goes first drawing cards to get as close to 21, then the dealer goes doing the same thing. The two then compare the total value of their drawn cards and whoever is closer to 21 wins. However when drawing cards if the total goes over 21 you immediately lose *"Bust"*. The rules are simple, the play is thrilling, and there is opportunity for high strategy. <br> 
 At the start of each round the player makes a bet 100p, 500p, or 1000p from there the game is played. The player gets 2 cards and the dealer gets 2 cards with the second card back-side faceup obscuring its value. The player then gets to either *Hit*,*Double*,or *Stand*. 
 - **Hit**: Player draws 1 card from the deck and adds that value to their hand. The player can continue hitting as long as the hand value doesn't go beyond 21.
-- **Double**: Only selectable when the first two drawn cards equal to 9, 10, or 11. When selected you double your bet and only draw 1 card to add to the hand.
+- **Double**: Only selectable when the first two drawn cards total equal to 9, 10, or 11. When selected you double your bet and only draw 1 card to add to the hand.
 - **Stand**: Player ends their turn.
 <!-- end of the list -->
-After the player turn the dealer then gets their turn, differences are is that the dealer must keep hitting if they are under or equal to 16 and must stand once they are above or equal to 17. Once both player and dealer get a turn and neither have gone beyond 21 the totals are compared whoever is closer to 21 is the winner. Bets will then be payed out depending on who won and the board will be cleaned, used cards will be discarded.<br>
+After the player turn the dealer then gets their turn, difference is that the dealer must keep hitting if they are under or equal to 16 and must stand once they are above or equal to 17. Once both player and dealer get a turn and neither have gone beyond 21 the totals are compared whoever is closer to 21 is the winner. Bets will then be payed out depending on who won and the board will be cleaned, used cards will be discarded.<br>
 My Blackjack game uses 6 decks for a total of 312 cards, once below 50% the deck will be reshuffled. 
 
 
@@ -47,9 +47,11 @@ Confentti courtesy of https://github.com/mathusummut/
 [https://github.com/SEI-Remote/confetti]<br>
 Animate
 [https://animate.style/]
+CSS cardstarter from GA
+[https://github.com/SEI-Remote/flippin-awesome-improved]
 
 # Ice Box / Stretch Goals
-- [ ] More audio implementation 
+- [x] Sound effects
 - [ ] Card Animation
 - [ ] Dealer portrait that updates depending on what is going on
 - [ ] Show the deck and discard deck for continuity sake

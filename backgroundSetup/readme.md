@@ -1,0 +1,2 @@
+# Background Sandbox
+I used css and html to make my background, added this folder to show it here. Learned a cool way to make curved text, so I felt it was a good experience. I'm disappointed no one commented on my background 😥 on the presentation. 

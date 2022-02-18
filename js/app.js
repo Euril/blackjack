@@ -98,6 +98,7 @@ function init(){
   
   if(score > goal){
     congrat()
+    tada.play()
   }
   if(score < 100){
     brokePhase()
@@ -417,7 +418,7 @@ function p1TotalRender(){
 function dTotalRender(){
   dealerTotal = totalHolder
   dealerTotalElem.removeAttribute("class") //removes color text
-  if(playerTotal === "Bust"){
+  if(dealerTotal === "Bust"){
     player1TotalElem.classList.add("redText")
   }
   dealerTotalElem.textContent = `( ${dealerTotal} )`
