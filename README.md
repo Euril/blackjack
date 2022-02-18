@@ -3,7 +3,7 @@
 # Play the Game
 Hardcoded for 1600x900 at the moment:
 - [https://euril.github.io/blackjack/]
-- [https://euril-blackjack.surge.sh/]
+- [euril-blackjack.surge.sh]
 <!-- start of description -->
 # Blackjack 🂮🃁
 My game is a somewhat faithful representation of Blackjack. The goal of the game is to beat the dealer by getting as close to a total of 21 without going over 21. Each card of a standard 52 card deck has a value, number cards have their own respective value. Face cards are worth 10 and the Ace is worth 1 or 11. <br>

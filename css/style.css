@@ -1,5 +1,6 @@
 body {  
-  display: grid; 
+  display: grid;
+   
   /* background: rgb(39,68,68);
 background: linear-gradient(180deg, rgba(39,68,68,1) 0%, rgba(50,86,86,1) 80%, rgba(75,119,119,1) 100%);  */
 /* background: #274444;
@@ -76,6 +77,8 @@ background-image: url(../images/table2.png);
 .betArea{
   grid-area:betting;
   grid-area:6/7/7/10;
+  /* background-color:gray; */
+  
   border:5px;
   border-style:none solid none solid;
   border-radius:50%;
@@ -83,6 +86,7 @@ background-image: url(../images/table2.png);
 #betting{
   display:grid;
   height:78px;
+  
   grid-template-columns: 33% 33% 33%;
   grid-template-rows: 100%;
   /* background-color:black; */
@@ -233,3 +237,11 @@ background: linear-gradient(0deg, rgba(195,34,34,1) 0%, rgba(253,187,45,1) 100%)
 .chip{
   width:50%;
 }
+
+@media(orientation: landscape){
+  
+}
+@media screen and (max-width:688px ){
+   
+}
+  
