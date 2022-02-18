@@ -2,8 +2,7 @@
 ![picture of starting screen of my game](./images/blackjackRM.png)
 # Play the Game
 Hardcoded for 1600x900 at the moment:
-- [https://euril.github.io/blackjack/]
-- [euril-blackjack.surge.sh]
+- [https://euril-blackjack.surge.sh/]
 <!-- start of description -->
 # Blackjack 🂮🃁
 My game is a somewhat faithful representation of Blackjack. The goal of the game is to beat the dealer by getting as close to a total of 21 without going over 21. Each card of a standard 52 card deck has a value, number cards have their own respective value. Face cards are worth 10 and the Ace is worth 1 or 11. <br>
@@ -41,11 +40,13 @@ Clapping audio
 Tada fanfare G
 [https://freesound.org/people/plasterbrain/sounds/397353/]<br>
 Casino chip audio
-[https://freesound.org/people/Piggimon/sounds/366217/]<br>
+[https://freesound.org/people/strangehorizon/sounds/618760/]<br>
 MichaelNo audio from The Office 
 [https://www.voicy.network/clips/NVurDahoEeihTtSuUqiQGg]<br>
-Confentti courtesy of ManliestBen
+Confentti courtesy of https://github.com/mathusummut/
 [https://github.com/SEI-Remote/confetti]<br>
+Animate
+[https://animate.style/]
 
 # Ice Box / Stretch Goals
 - [ ] More audio implementation 
@@ -58,6 +59,7 @@ Confentti courtesy of ManliestBen
 - [X] Chip Image for bets
 - [x] Double
 - [ ] Split / Surrender / and even maybe Insurance
+- [ ] Add Fisher-Yates Shuffle or other shuffle if better
 
 # Designing
 ![picture of my wireframe](./images/wireframe.png)

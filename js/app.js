@@ -9,14 +9,11 @@ cardSlide.volume = .2
 const clap = new Audio("../audio/clap.wav")
 clap.volume = .1
 const tada = new Audio("../audio/tadaG.flac")
-tada.volume = .2
+tada.volume = .1
 const no = new Audio("../audio/MichaelNo.mp3")
 no.volume = .1
-//ask ta for audio help
-//ask for screen size help or specifically media style size
-const chip = new Audio("../audio/casinoChip.wav #t=0.5, 1.5")
-chip.volume = .2
-
+const chip = new Audio("../audio/casinoChip.wav")
+chip.volume = .1
 
 /*---------------------------- Variables (state) ----------------------------*/
 let phase
@@ -53,6 +50,7 @@ let player1TotalElem = document.getElementById('playerTotal')
 let dealerTotalElem = document.getElementById('dealerTotal')
 
 /*----------------------------- Event Listeners -----------------------------*/
+//EL for the moves button list
 document.querySelector('.moveList').addEventListener('click', evt =>{
   if(evt.target.id === 'hit'){
     handleHit()
@@ -66,6 +64,7 @@ document.querySelector('.moveList').addEventListener('click', evt =>{
     setTimeout(dealerPhase, 2000)
   }
 })
+//EL for the middle message
 playGame.addEventListener('click', evt => {
   if(evt.target.id ==="phaseGame" && phase === "INIT"){
     betPhase()
@@ -74,6 +73,7 @@ playGame.addEventListener('click', evt => {
     takeLoan()
   }
 })
+//EL for the Bet Button List
 document.querySelector('.betList').addEventListener('click', evt =>{
   if(evt.target.id === 'bet100'){
     handleBet(100)
@@ -350,6 +350,8 @@ function renderChip(){
     }
     betArea.appendChild(newChip)
     chip.play()
+    
+    
 }
 function renderChipDouble(){
   let newChip = document.createElement('img')
@@ -373,13 +375,18 @@ function renderChipDouble(){
     betArea.appendChild(newChip)
     betArea.appendChild(newChip2)
     chip.play()
+    
     chip.play()
+    
 }
 
 function betPayout(bet){
   if(outcome === "W"){
     score = score + bet
     clap.play()
+    if(clap.currentTime > 4){
+      clap.pause()
+    }
   }
   if(outcome === "L"){
     score = score - bet
@@ -442,17 +449,17 @@ function shuffleDeck(){
   blackjackDeck = [...sixDeckOrig]
 }
 
-function messageColor(){
-  if(outcome = "W"){
-    playGame.classList.add("red-gradient-text")
-  }else if(outcome = "L"){
-    playGame.classList.add("redText")
-  }else if(outcome = "BJ"){
-    playGame.classList.add("gold-gradient-text")
-  }else if(outcome = "T"){
-    playGame.removeAttribute('class')
-  }
-}
+// function messageColor(){
+//   if(outcome = "W"){
+//     playGame.classList.add("red-gradient-text")
+//   }else if(outcome = "L"){
+//     playGame.classList.add("redText")
+//   }else if(outcome = "BJ"){
+//     playGame.classList.add("gold-gradient-text")
+//   }else if(outcome = "T"){
+//     playGame.removeAttribute('class')
+//   }
+// }
 
 //function to celebrate achievement...
 function congrat(){
