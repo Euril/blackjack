@@ -70,4 +70,4 @@ Original wireframe, definetely thought simple.
 ![Ver 1.0 of game](./images/blackjackRM.png)
 ![Ver 1.0 of game in play](./images/blackjackRM2.png)
 Hope you liked my version of blackjack, I enjoyed thinking out how to translate playing the game into javascript code. I went out of my way to mimic a blackjack table, I made the background using the gradient tool then bringing that into a clone of my code to make things show up where I wanted them to. I really like how the curved text/lines turned out, they ended up being in the right location for the player hand cards to spawn. I made the casino chips in gimp.
-Overal my inspiration for the design came from games I've played blackjack in as I've never actually played Blackjack in a casino before. Shoutout to the *Yakuza* series and *Fallout: New Vegas*.
+Overall my inspiration for the design came from games I've played blackjack in as I've never actually played Blackjack in a casino before. Shoutout to the *Yakuza* series and *Fallout: New Vegas*.
