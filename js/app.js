@@ -30,6 +30,7 @@ let playerSplitHand = []
 let discardDeck = []
 
 let blackjackDeck = [...sixDeckOrig]
+blackjackDeck = shuffle(blackjackDeck)
 
 let playerTotal = 0
 let dealerTotal = 0
@@ -445,9 +446,29 @@ function renderCard(cardPicked, idx, location){
   location.appendChild(newCard)
 }
 
+//Fisher Yates Shuffle
+function shuffle(array) {
+  let currentIndex = array.length,  randomIndex;
+
+  // While there remain elements to shuffle.
+  while (currentIndex != 0) {
+
+    // Pick a remaining element.
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+
+    // And swap it with the current element.
+    [array[currentIndex], array[randomIndex]] = [
+      array[randomIndex], array[currentIndex]];
+  }
+
+  return array;
+}
+
 function shuffleDeck(){
   console.log("Shuffled deck")
   blackjackDeck = [...sixDeckOrig]
+  blackjackDeck = shuffle(blackjackDeck)
 }
 
 // function messageColor(){

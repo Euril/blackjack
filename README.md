@@ -61,7 +61,7 @@ CSS cardstarter from GA
 - [X] Chip Image for bets
 - [x] Double
 - [ ] Split / Surrender / and even maybe Insurance
-- [ ] Add Fisher-Yates Shuffle or other shuffle if better
+- [x] Add Fisher-Yates Shuffle or other shuffle if better
 
 # Wireframe and Design
 ![picture of my wireframe](./images/wireframe.png)
