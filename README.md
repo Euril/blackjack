@@ -52,15 +52,10 @@ CSS cardstarter from GA
 
 # Ice Box / Stretch Goals
 - [x] Sound effects
-- [ ] Card Animation
-- [ ] Dealer portrait that updates depending on what is going on
-- [ ] Show the deck and discard deck for continuity sake
 - [ ] Mobile accessibility
-- [ ] More players or basic AI players to add more authenticity
 - [x] Betting
 - [X] Chip Image for bets
 - [x] Double
-- [ ] Split / Surrender / and even maybe Insurance
 - [x] Add Fisher-Yates Shuffle or other shuffle if better
 
 # Wireframe and Design
